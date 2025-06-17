@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "zhuanqiuji.h": "c",
+        "stm32h7xx_hal_uart.h": "c",
+        "stm32h7xx_hal_conf.h": "c",
+        "gameset.h": "c",
+        "includes.h": "c"
+    },
+    "Codegeex.CompletionDelay": 1
+}

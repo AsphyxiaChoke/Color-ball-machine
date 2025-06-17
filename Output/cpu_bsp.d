@@ -1,0 +1,12 @@
+..\..\output\cpu_bsp.o: ..\..\User\BSP\cpu_bsp.c
+..\..\output\cpu_bsp.o: ..\..\User\BSP\bsp.h
+..\..\output\cpu_bsp.o: ..\..\User\uC-CPU\cpu_core.h
+..\..\output\cpu_bsp.o: ..\..\User\uC-CPU\ARM-Cortex-M4\RealView\cpu.h
+..\..\output\cpu_bsp.o: ..\..\User\uC-CPU\cpu_def.h
+..\..\output\cpu_bsp.o: ..\..\User\APP\inc\cpu_cfg.h
+..\..\output\cpu_bsp.o: ..\..\User\uC-LIB\lib_def.h
+..\..\output\cpu_bsp.o: ..\..\User\uC-LIB\lib_mem.h
+..\..\output\cpu_bsp.o: ..\..\User\uC-CPU\cpu_core.h
+..\..\output\cpu_bsp.o: ..\..\User\APP\inc\lib_cfg.h
+..\..\output\cpu_bsp.o: ..\..\User\uC-LIB\lib_str.h
+..\..\output\cpu_bsp.o: ..\..\User\uC-LIB\lib_ascii.h
