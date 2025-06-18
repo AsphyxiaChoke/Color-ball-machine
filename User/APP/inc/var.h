@@ -26,6 +26,7 @@ extern int64_t CurrPayoff;     // 现在盈利
 extern int32_t AccoutPassWord; // 查账密码
 extern int32_t ConfigPassWord; // 参数密码
 extern int32_t SystemPassWord; // 系统密码
+extern int32_t FuncPassWord;   // 功能密码
 extern uint8_t Qiuwei[10];     // 机器球位
 //------------------------------------------------------
 // 游戏参数重设使用

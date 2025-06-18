@@ -155,6 +155,7 @@ void ClearZero(uint8_t n)
         AccoutPassWord = 0;
         ConfigPassWord = 0;
         SystemPassWord = 16881688;
+        FuncPassWord = 0;
         WriteEEPROM(eeAccoutPassWord, (uint8_t *)&AccoutPassWord, sizeof(AccoutPassWord));
         WriteEEPROM(eeConfigPassWord, (uint8_t *)&ConfigPassWord, sizeof(ConfigPassWord));
         WriteEEPROM(eeSystemPassWord, (uint8_t *)&SystemPassWord, sizeof(SystemPassWord));

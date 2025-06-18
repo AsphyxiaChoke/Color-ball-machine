@@ -22,7 +22,7 @@ uint8_t GetGameLuck(void)
     uint8_t luck = __random()%11;
     uint8_t result = 0;
     uint16_t luck_index = GetLuckIndex(&DipSw);
-    //æœ€å¤§å‡ºç‰¹æ®Šå¥–çš„æ¦‚ç‡ä¸º15/128
+    //×î´ó³öÌØÊâ½±µÄ¸ÅÂÊÎª15/128
     //if ((luck_index&0x000F) > (__random()&0x007f) || YK_Luck)
     {
         /*if(YK_Luck)
@@ -35,21 +35,21 @@ uint8_t GetGameLuck(void)
         }*/
         switch (luck)
         {
-        case 0x01://å½©é‡‘
+        case 0x01://²Ê½ğ
             break;
-        case 0x02://æ˜ç‰Œ
+        case 0x02://Ã÷ÅÆ
             result = ((GamePai & 0x0f) >= 0x0e) ? 4 : (GamePai & 0x30) >> 4;
             luck = luck + (result + 1)<<4;
             break;
-        case 0x03://å¹¸è¿ä½ï¼Œ1~6
+        case 0x03://ĞÒÔËÎ»£¬1~6
             luck = luck + ((__random() % MAX_FENJI) + 1)<<4;
             break;
-        case 0x04://åŠ å€ï¼Œ1~3
+        case 0x04://¼Ó±¶£¬1~3
             luck = luck + ((__random() % 3) + 1)<<4;
             break;
-        case 0x05://å…¨ä¸­
+        case 0x05://È«ÖĞ
             break;
-        case 0x06://é€ä¸€é—¨
+        case 0x06://ËÍÒ»ÃÅ
             result = ((GamePai & 0x0f) >= 0x0e) ? 4 : (GamePai & 0x30) >> 4;
             for(;;)
             {
@@ -61,13 +61,13 @@ uint8_t GetGameLuck(void)
                 }
             }
             break;
-        case 0x07://å¤§å½©é‡‘
+        case 0x07://´ó²Ê½ğ
             break;
-        case 0x08://ä¸­å½©é‡‘
+        case 0x08://ÖĞ²Ê½ğ
             break;
-        case 0x09://å°å½©é‡‘
+        case 0x09://Ğ¡²Ê½ğ
             break;
-        case 0x0a://è¿”ç§¯åˆ†
+        case 0x0a://·µ»ı·Ö
             break;
         default:
             break;

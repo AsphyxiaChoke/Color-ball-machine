@@ -235,6 +235,20 @@ void GameSetMune(HANDTYPE *handpoint)
                 // sprintf(buf, "tsw 255,0\xff\xff\xff");
                 // HTMSend(buf);
                 break;
+            case 9:
+                handpoint->Oldpage = handpoint->page;
+                handpoint->Oldctr = handpoint->ctr;
+                handpoint->GameIndex = INPUT_PASS;
+                handpoint->password = 0;
+                sprintf(buf, "page 6\xff\xff\xff");
+                HTMSend(buf);
+                sprintf(buf, "t0.txt=\"输入功能密码\"\xff\xff\xff");
+                HTMSend(buf);
+                sprintf(buf, "t1.txt=\"\"\xff\xff\xff");
+                HTMSend(buf);
+                sprintf(buf, "t2.txt=\"\"\xff\xff\xff");
+                HTMSend(buf);
+                break;
             }
         }
     }
@@ -517,6 +531,16 @@ void GameSetInputPass(HANDTYPE *handpoint)
                         HTMSend(buf);
                     }
                     break;
+                case 9:
+                    if(handpoint->password == FuncPassWord){
+                        handpoint->Oldpage = handpoint->page;
+                        handpoint->Oldctr = handpoint->ctr;
+                        handpoint->GameIndex = CONFIG_CRT3;
+                        memcpy(&SetDipSw, &DipSw, sizeof(DipSw));
+                        sprintf(buf, "page 9\xff\xff\xff");
+                        HTMSend(buf);
+                    }
+                    break;  
                 default:
                     break;
                 }
@@ -536,6 +560,10 @@ void GameSetInputPass(HANDTYPE *handpoint)
                     break;
                 case 4:
                     sprintf(buf, "t0.txt=\"输入系统密码\"\xff\xff\xff");
+                    HTMSend(buf);
+                    break;
+                case 9:
+                    sprintf(buf, "t0.txt=\"输入功能密码\"\xff\xff\xff");
                     HTMSend(buf);
                     break;
                 }
@@ -1145,6 +1173,39 @@ void GameSetQui(HANDTYPE *handpoint)
     }
 }
 //----------------------------------------------------------------
+// 功能设置
+//----------------------------------------------------------------
+void GameSetFunc(HANDTYPE *handpoint)
+{
+    char buf[50];
+    if (handpoint->rx_ok_flg)
+    {
+        handpoint->rx_ok_flg = 0;
+        if (handpoint->page == 9)
+        {
+            if (handpoint->ctr == 0x01) // 保存
+            {
+                //__24C04_FLAG |= S_FUNC;
+                handpoint->gamestation = 0;
+                handpoint->GameIndex = MAIN_MUNE;
+                sprintf(buf, "page 0\xff\xff\xff");
+                HTMSend(buf);
+                sprintf(buf, "t0.txt=\"%s\"\xff\xff\xff", GameName);
+                HTMSend(buf);
+            }
+            else if (handpoint->ctr == 0x02) // 取消保存
+            {
+                handpoint->gamestation = 0;
+                handpoint->GameIndex = MAIN_MUNE;
+                sprintf(buf, "page 0\xff\xff\xff");
+                HTMSend(buf);
+                sprintf(buf, "t0.txt=\"%s\"\xff\xff\xff", GameName);
+                HTMSend(buf);
+            }
+        }
+    }
+}
+//----------------------------------------------------------------
 // 头彩金设置
 //----------------------------------------------------------------
 void GameSetHardBonus(HANDTYPE *handpoint)
@@ -1194,6 +1255,9 @@ void GameSetProc(HANDTYPE *handpoint)
         break;
     case SETBONUS:
         GameSetHardBonus(handpoint);
+        break;
+    case CONFIG_CRT3: // 功能设置
+        GameSetFunc(handpoint);
         break;
     default:
         GameSetInit(handpoint);
