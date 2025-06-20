@@ -235,7 +235,7 @@ void GameSetMune(HANDTYPE *handpoint)
                 // sprintf(buf, "tsw 255,0\xff\xff\xff");
                 // HTMSend(buf);
                 break;
-            case 9:
+            case 9: // 进入功能设置
                 handpoint->Oldpage = handpoint->page;
                 handpoint->Oldctr = handpoint->ctr;
                 handpoint->GameIndex = INPUT_PASS;
@@ -318,12 +318,11 @@ void GameSetInputPass(HANDTYPE *handpoint)
         handpoint->rx_ok_flg = 0;
         if (handpoint->page == 6)
         {
-
             if (handpoint->ctr == 1)
             {
                 switch (handpoint->Oldctr)
                 {
-                case 1:
+                case 1: // 查账界面进入
                     if (handpoint->password == AccoutPassWord)
                     {
                         uint8_t i;
@@ -383,7 +382,7 @@ void GameSetInputPass(HANDTYPE *handpoint)
                         HTMSend(buf);
                     }
                     break;
-                case 3:
+                case 3: // 参数设置界面进入
                     if (handpoint->password == ConfigPassWord)
                     {
                         handpoint->Oldpage = handpoint->page;
@@ -406,33 +405,19 @@ void GameSetInputPass(HANDTYPE *handpoint)
                         HTMSend(buf);
                         sprintf(buf, "t9.txt=\"%ld\"\xff\xff\xff", GetMaxbet(&SetDipSw));
                         HTMSend(buf);
-                        sprintf(buf, "t10.txt=\"%ld\"\xff\xff\xff", GetGameTime(&SetDipSw));
+                        sprintf(buf, "t10.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & PLAYING_FLG) ? "开" : "关");
                         HTMSend(buf);
-                        sprintf(buf, "t11.txt=\"%ld\"\xff\xff\xff", GetRate(&SetDipSw));
+                        sprintf(buf, "t11.txt=\"%ld\"\xff\xff\xff", GetGameTime(&SetDipSw));
                         HTMSend(buf);
-                        sprintf(buf, "t12.txt=\"%ld\"\xff\xff\xff", GetChildOver(&SetDipSw));
+                        sprintf(buf, "t12.txt=\"%ld\"\xff\xff\xff", GetRate(&SetDipSw));
                         HTMSend(buf);
-                        sprintf(buf, "t13.txt=\"%ld\"\xff\xff\xff", GetGameOver(&SetDipSw));
+                        sprintf(buf, "t13.txt=\"%ld\"\xff\xff\xff", GetChildOver(&SetDipSw));
                         HTMSend(buf);
-                        sprintf(buf, "t14.txt=\"%ld\"\xff\xff\xff", GetLuckIndex(&SetDipSw) + 1);
+                        sprintf(buf, "t14.txt=\"%ld\"\xff\xff\xff", GetGameOver(&SetDipSw));
                         HTMSend(buf);
-                        sprintf(buf, "t15.txt=\"%ld\"\xff\xff\xff", GetMinBonus(&SetDipSw));
+                        sprintf(buf, "t15.txt=\"%ld\"\xff\xff\xff", GetLuckTimes(&SetDipSw));
                         HTMSend(buf);
-                        sprintf(buf, "t16.txt=\"%ld\"\xff\xff\xff", GetMaxBonus(&SetDipSw));
-                        HTMSend(buf);
-                        sprintf(buf, "t17.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & PLAYING_FLG) ? "开" : "关");
-                        HTMSend(buf);
-                        sprintf(buf, "t18.txt=\"%ld\"\xff\xff\xff", GetJifenRate(&SetDipSw));
-                        HTMSend(buf);
-                        sprintf(buf, "t19.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & LUCKBIT_FLG) ? "开" : "关");
-                        HTMSend(buf);
-                        sprintf(buf, "t20.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & MINGPAI_FLG) ? "开" : "关");
-                        HTMSend(buf);
-                        sprintf(buf, "t21.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & FANBEI_FLG) ? "开" : "关");
-                        HTMSend(buf);
-                        sprintf(buf, "t22.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & ALLWIN_FLG) ? "开" : "关");
-                        HTMSend(buf);
-                        sprintf(buf, "t23.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & SONGDENG_FLG) ? "开" : "关");
+                        sprintf(buf, "t16.txt=\"%ld\"\xff\xff\xff", GetLuckIndex(&SetDipSw) + 1);
                         HTMSend(buf);
                     }
                     else
@@ -441,7 +426,7 @@ void GameSetInputPass(HANDTYPE *handpoint)
                         HTMSend(buf);
                     }
                     break;
-                case 4:
+                case 4: // 系统设置界面进入
                     if (handpoint->password == SystemPassWord)
                     {
                         sprintf(buf, "systemconfig.va0.val=0\xff\xff\xff");
@@ -531,16 +516,56 @@ void GameSetInputPass(HANDTYPE *handpoint)
                         HTMSend(buf);
                     }
                     break;
-                case 9:
-                    if(handpoint->password == FuncPassWord){
+                case 9: // 功能设置界面进入
+                    if (handpoint->password == FuncPassWord)
+                    {
                         handpoint->Oldpage = handpoint->page;
                         handpoint->Oldctr = handpoint->ctr;
                         handpoint->GameIndex = CONFIG_CRT3;
                         memcpy(&SetDipSw, &DipSw, sizeof(DipSw));
                         sprintf(buf, "page 9\xff\xff\xff");
                         HTMSend(buf);
+                        // 左侧
+                        sprintf(buf, "t3.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & TOUCAI_FLG) ? "开" : "关"); // t3: 头彩选择
+                        HTMSend(buf);
+                        sprintf(buf, "t4.txt=\"%ld\"\xff\xff\xff", GetTouCaiRate(&SetDipSw)); // t4: 头彩比例
+                        HTMSend(buf);
+                        sprintf(buf, "t5.txt=\"%ld\"\xff\xff\xff", GetLineMinLitBonus(&SetDipSw)); // t5: 小彩金最小值
+                        HTMSend(buf);
+                        sprintf(buf, "t6.txt=\"%ld\"\xff\xff\xff", GetLineMaxLitBonus(&SetDipSw)); // t6: 小彩金最大值
+                        HTMSend(buf);
+                        sprintf(buf, "t7.txt=\"%ld\"\xff\xff\xff", GetLineMinMidBonus(&SetDipSw)); // t7: 中彩金最小值
+                        HTMSend(buf);
+                        sprintf(buf, "t8.txt=\"%ld\"\xff\xff\xff", GetLineMaxMidBonus(&SetDipSw)); // t8: 中彩金最大值
+                        HTMSend(buf);
+                        sprintf(buf, "t9.txt=\"%ld\"\xff\xff\xff", GetLineMinBigBonus(&SetDipSw)); // t9: 大彩金最小值
+                        HTMSend(buf);
+                        sprintf(buf, "t10.txt=\"%ld\"\xff\xff\xff", GetLineMaxBigBonus(&SetDipSw)); // t10: 大彩金最大值
+                        HTMSend(buf);
+                        // 右侧
+                        sprintf(buf, "t11.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & BONUS_FLG) ? "开" : "关"); // t11: 幸运彩
+                        HTMSend(buf);
+                        sprintf(buf, "t12.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & LUCKBIT_FLG) ? "开" : "关");
+                        HTMSend(buf);
+                        sprintf(buf, "t13.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & MINGPAI_FLG) ? "开" : "关");
+                        HTMSend(buf);
+                        sprintf(buf, "t14.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & FANBEI_FLG) ? "开" : "关");
+                        HTMSend(buf);
+                        sprintf(buf, "t15.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & ALLWIN_FLG) ? "开" : "关");
+                        HTMSend(buf);
+                        sprintf(buf, "t16.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & SONGDENG_FLG) ? "开" : "关");
+                        HTMSend(buf);
+                        sprintf(buf, "t17.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & JIFEN_FLG) ? "开" : "关");
+                        HTMSend(buf);
+                        sprintf(buf, "t18.txt=\"%ld\"\xff\xff\xff", GetJifenRate(&SetDipSw)); // t18: 积分比例
+                        HTMSend(buf);
                     }
-                    break;  
+                    else
+                    {
+                        sprintf(buf, "t2.txt=\"密码错误！\"\xff\xff\xff");
+                        HTMSend(buf);
+                    }
+                    break;
                 default:
                     break;
                 }
@@ -737,116 +762,7 @@ void GameSetBaseSet(HANDTYPE *handpoint)
                     SetDipSw.Maxbet = handpoint->password;
                 }
                 break;
-            case 11: // 游戏时间
-                handpoint->password = strtodex(handpoint->data);
-                if (handpoint->password > 240)
-                {
-                    SetDipSw.TimeIndex = 240;
-                    sprintf(buf, "t10.txt=\"%ld\"\xff\xff\xff", GetGameTime(&SetDipSw));
-                    HTMSend(buf);
-                }
-                else
-                {
-                    SetDipSw.TimeIndex = handpoint->password;
-                }
-                break;
-            case 12: // 牌路选择
-                handpoint->password = strtodex(handpoint->data);
-                if (handpoint->password > 12)
-                {
-                    SetDipSw.RateIndex = 12;
-                    sprintf(buf, "t11.txt=\"%ld\"\xff\xff\xff", GetRate(&SetDipSw));
-                    HTMSend(buf);
-                }
-                else
-                {
-                    SetDipSw.RateIndex = handpoint->password;
-                }
-                break;
-            case 13: // 破台分数
-                handpoint->password = strtodex(handpoint->data);
-                if (handpoint->password > 100000)
-                {
-                    SetDipSw.OverIndex = 100000;
-                    sprintf(buf, "t12.txt=\"%ld\"\xff\xff\xff", GetChildOver(&SetDipSw));
-                    HTMSend(buf);
-                }
-                else
-                {
-                    SetDipSw.OverIndex = handpoint->password;
-                }
-                break;
-            case 14: // 爆机分数
-                handpoint->password = strtodex(handpoint->data);
-                if (handpoint->password > 1000000)
-                {
-                    SetDipSw.GameOver = 1000000;
-                    sprintf(buf, "t13.txt=\"%ld\"\xff\xff\xff", GetGameOver(&SetDipSw));
-                    HTMSend(buf);
-                }
-                else
-                {
-                    SetDipSw.GameOver = handpoint->password;
-                }
-                break;
-            case 15: // 幸运率
-                handpoint->password = strtodex(handpoint->data);
-                if (handpoint->password == 0)
-                {
-                    SetDipSw.LuckIndex = 0;
-                    sprintf(buf, "t14.txt=\"%ld\"\xff\xff\xff", GetLuckIndex(&SetDipSw) + 1);
-                    HTMSend(buf);
-                }
-                else if (handpoint->password > 16)
-                {
-                    SetDipSw.LuckIndex = 15;
-                    sprintf(buf, "t14.txt=\"%ld\"\xff\xff\xff", GetLuckIndex(&SetDipSw) + 1);
-                    HTMSend(buf);
-                }
-                else
-                {
-                    SetDipSw.LuckIndex = handpoint->password - 1;
-                }
-                break;
-            case 16: // 最小彩金
-                handpoint->password = strtodex(handpoint->data);
-                if (handpoint->password < 10)
-                {
-                    SetDipSw.MinBonus = 10;
-                    sprintf(buf, "t15.txt=\"%ld\"\xff\xff\xff", GetMinBonus(&SetDipSw));
-                    HTMSend(buf);
-                }
-                else if (handpoint->password > 10000)
-                {
-                    SetDipSw.MinBonus = 10000;
-                    sprintf(buf, "t15.txt=\"%ld\"\xff\xff\xff", GetMinBonus(&SetDipSw));
-                    HTMSend(buf);
-                }
-                else
-                {
-                    SetDipSw.MinBonus = handpoint->password;
-                }
-                break;
-            case 17: // 最大彩金
-                handpoint->password = strtodex(handpoint->data);
-                if (handpoint->password > 100000)
-                {
-                    SetDipSw.MaxBonus = 100000;
-                    sprintf(buf, "t16.txt=\"%ld\"\xff\xff\xff", GetMaxBonus(&SetDipSw));
-                    HTMSend(buf);
-                }
-                else if (handpoint->password < 1000)
-                {
-                    SetDipSw.MaxBonus = 1000;
-                    sprintf(buf, "t16.txt=\"%ld\"\xff\xff\xff", GetMaxBonus(&SetDipSw));
-                    HTMSend(buf);
-                }
-                else
-                {
-                    SetDipSw.MaxBonus = handpoint->password;
-                }
-                break;
-            case 18: // 演示开关
+            case 11: // 演示开关
                 if (SetDipSw.PlayFunEn & PLAYING_FLG)
                 {
                     SetDipSw.PlayFunEn &= (~PLAYING_FLG);
@@ -855,80 +771,98 @@ void GameSetBaseSet(HANDTYPE *handpoint)
                 {
                     SetDipSw.PlayFunEn |= PLAYING_FLG;
                 }
-                sprintf(buf, "t17.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & PLAYING_FLG) ? "开" : "关");
+                sprintf(buf, "t10.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & PLAYING_FLG) ? "开" : "关");
                 HTMSend(buf);
                 break;
-            case 19: // 积分率
+            case 12: // 游戏时间
                 handpoint->password = strtodex(handpoint->data);
-                if (handpoint->password > 100)
+                if (handpoint->password > 240)
                 {
-                    SetDipSw.Jifenrate = 100;
-                    sprintf(buf, "t18.txt=\"%ld\"\xff\xff\xff", GetJifenRate(&SetDipSw));
+                    SetDipSw.TimeIndex = 240;
+                    sprintf(buf, "t11.txt=\"%ld\"\xff\xff\xff", GetGameTime(&SetDipSw));
                     HTMSend(buf);
                 }
                 else
                 {
-                    SetDipSw.Jifenrate = handpoint->password;
+                    SetDipSw.TimeIndex = handpoint->password;
                 }
                 break;
-            case 20: // 幸运位开关
-                if (SetDipSw.PlayFunEn & LUCKBIT_FLG)
+            case 13: // 牌路选择
+                handpoint->password = strtodex(handpoint->data);
+                if (handpoint->password > 12)
                 {
-                    SetDipSw.PlayFunEn &= (~LUCKBIT_FLG);
+                    SetDipSw.RateIndex = 12;
+                    sprintf(buf, "t12.txt=\"%ld\"\xff\xff\xff", GetRate(&SetDipSw));
+                    HTMSend(buf);
                 }
                 else
                 {
-                    SetDipSw.PlayFunEn |= LUCKBIT_FLG;
+                    SetDipSw.RateIndex = handpoint->password;
                 }
-                sprintf(buf, "t19.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & LUCKBIT_FLG) ? "开" : "关");
-                HTMSend(buf);
                 break;
-            case 21: // 明牌开关
-                if (SetDipSw.PlayFunEn & MINGPAI_FLG)
+            case 14: // 破台分数
+                handpoint->password = strtodex(handpoint->data);
+                if (handpoint->password > 100000)
                 {
-                    SetDipSw.PlayFunEn &= (~MINGPAI_FLG);
+                    SetDipSw.OverIndex = 100000;
+                    sprintf(buf, "t13.txt=\"%ld\"\xff\xff\xff", GetChildOver(&SetDipSw));
+                    HTMSend(buf);
                 }
                 else
                 {
-                    SetDipSw.PlayFunEn |= MINGPAI_FLG;
+                    SetDipSw.OverIndex = handpoint->password;
                 }
-                sprintf(buf, "t20.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & MINGPAI_FLG) ? "开" : "关");
-                HTMSend(buf);
                 break;
-            case 22: // 加倍开关
-                if (SetDipSw.PlayFunEn & FANBEI_FLG)
+            case 15: // 爆机分数
+                handpoint->password = strtodex(handpoint->data);
+                if (handpoint->password > 1000000)
                 {
-                    SetDipSw.PlayFunEn &= (~FANBEI_FLG);
+                    SetDipSw.GameOver = 1000000;
+                    sprintf(buf, "t14.txt=\"%ld\"\xff\xff\xff", GetGameOver(&SetDipSw));
+                    HTMSend(buf);
                 }
                 else
                 {
-                    SetDipSw.PlayFunEn |= FANBEI_FLG;
+                    SetDipSw.GameOver = handpoint->password;
                 }
-                sprintf(buf, "t21.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & FANBEI_FLG) ? "开" : "关");
-                HTMSend(buf);
                 break;
-            case 23: // 全中开关
-                if (SetDipSw.PlayFunEn & ALLWIN_FLG)
+            case 16: // 幸运次数
+                handpoint->password = strtodex(handpoint->data);
+                if (handpoint->password <= 0)
                 {
-                    SetDipSw.PlayFunEn &= (~ALLWIN_FLG);
+                    SetDipSw.LuckTimes = 0;
+                    sprintf(buf, "t15.txt=\"%ld\"\xff\xff\xff", GetLuckTimes(&SetDipSw));
+                    HTMSend(buf);
+                }
+                else if (handpoint->password > 10)
+                {
+                    SetDipSw.LuckTimes = 10;
+                    sprintf(buf, "t15.txt=\"%ld\"\xff\xff\xff", GetLuckTimes(&SetDipSw));
+                    HTMSend(buf);
                 }
                 else
                 {
-                    SetDipSw.PlayFunEn |= ALLWIN_FLG;
+                    SetDipSw.LuckTimes = handpoint->password;
                 }
-                sprintf(buf, "t22.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & ALLWIN_FLG) ? "开" : "关");
-                HTMSend(buf);
-            case 24: // 送灯开关
-                if (SetDipSw.PlayFunEn & SONGDENG_FLG)
+                break;
+            case 17: // 幸运比例
+                handpoint->password = strtodex(handpoint->data);
+                if (handpoint->password == 0)
                 {
-                    SetDipSw.PlayFunEn &= (~SONGDENG_FLG);
+                    SetDipSw.LuckIndex = 0;
+                    sprintf(buf, "t16.txt=\"%ld\"\xff\xff\xff", GetLuckIndex(&SetDipSw) + 1);
+                    HTMSend(buf);
+                }
+                else if (handpoint->password > 16)
+                {
+                    SetDipSw.LuckIndex = 15;
+                    sprintf(buf, "t16.txt=\"%ld\"\xff\xff\xff", GetLuckIndex(&SetDipSw) + 1);
+                    HTMSend(buf);
                 }
                 else
                 {
-                    SetDipSw.PlayFunEn |= SONGDENG_FLG;
+                    SetDipSw.LuckIndex = handpoint->password - 1;
                 }
-                sprintf(buf, "t23.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & SONGDENG_FLG) ? "开" : "关");
-                HTMSend(buf);
                 break;
             case 1: // 保存
                 __24C04_FLAG |= S_DIP;
@@ -1107,12 +1041,12 @@ void GameSetQui(HANDTYPE *handpoint)
         {
             if ((0 < handpoint->ctr) && (handpoint->ctr <= 0x0A)) // 控制出球
             {
-                
+
                 ChuQiuHao = handpoint->ctr - 1;
                 QiuTest = 1;
                 handpoint->SetVolume = 1;
                 // sprintf(buf, "tsw 255,0\xff\xff\xff");
-                //HTMSend(buf);
+                // HTMSend(buf);
                 QiuNumIndex[handpoint->ctr][0]++;
                 if (QiuNumIndex[handpoint->ctr][0] >= 6)
                 {
@@ -1154,7 +1088,6 @@ void GameSetQui(HANDTYPE *handpoint)
                 HTMSend(buf);
                 sprintf(buf, "t0.txt=\"%s\"\xff\xff\xff", GameName);
                 HTMSend(buf);
-
             }
         }
     }
@@ -1183,24 +1116,204 @@ void GameSetFunc(HANDTYPE *handpoint)
         handpoint->rx_ok_flg = 0;
         if (handpoint->page == 9)
         {
-            if (handpoint->ctr == 0x01) // 保存
+
+            switch (handpoint->ctr)
             {
-                //__24C04_FLAG |= S_FUNC;
+            case 1:
+                memcpy(&DipSw, &SetDipSw, sizeof(DipSw));
+                __24C04_FLAG |= S_DIP;
                 handpoint->gamestation = 0;
                 handpoint->GameIndex = MAIN_MUNE;
                 sprintf(buf, "page 0\xff\xff\xff");
                 HTMSend(buf);
                 sprintf(buf, "t0.txt=\"%s\"\xff\xff\xff", GameName);
                 HTMSend(buf);
-            }
-            else if (handpoint->ctr == 0x02) // 取消保存
-            {
+                break;
+            case 2:
                 handpoint->gamestation = 0;
                 handpoint->GameIndex = MAIN_MUNE;
                 sprintf(buf, "page 0\xff\xff\xff");
                 HTMSend(buf);
                 sprintf(buf, "t0.txt=\"%s\"\xff\xff\xff", GameName);
                 HTMSend(buf);
+                break;
+
+            case 3: // t3: 头彩选择
+                SetDipSw.PlayFunEn ^= TOUCAI_FLG;
+                sprintf(buf, "t3.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & TOUCAI_FLG) ? "开" : "关");
+                HTMSend(buf);
+                break;
+            case 4: // t4: 头彩比例
+                handpoint->password = strtodex(handpoint->data);
+                if (handpoint->password > 10)
+                {
+                    SetDipSw.Toucairate = 10;
+                }
+                else if (handpoint->password < 0)
+                {
+                    SetDipSw.Toucairate = 0;
+                }
+                else
+                {
+                    SetDipSw.Toucairate = handpoint->password;
+                }
+                sprintf(buf, "t4.txt=\"%ld\"\xff\xff\xff", (uint32_t)SetDipSw.Toucairate);
+                HTMSend(buf);
+                break;
+            case 5: // t5: 小彩金最小值 (Minlinelitbonus)
+                handpoint->password = strtodex(handpoint->data);
+                if (handpoint->password > 500)
+                {
+                    SetDipSw.Minlinelitbonus = 500;
+                }
+                else if (handpoint->password < 50)
+                {
+                    SetDipSw.Minlinelitbonus = 50;
+                }
+                else
+                {
+                    SetDipSw.Minlinelitbonus = handpoint->password;
+                }
+                sprintf(buf, "t5.txt=\"%ld\"\xff\xff\xff", SetDipSw.Minlinelitbonus);
+                HTMSend(buf);
+                break;
+            case 6: // t6: 小彩金最大值 (Maxlinelitbonus)
+                handpoint->password = strtodex(handpoint->data);
+                if (handpoint->password < 1000)
+                {
+                    SetDipSw.Maxlinelitbonus = 1000;
+                }
+                else if (handpoint->password > 3000)
+                {
+                    SetDipSw.Maxlinelitbonus = 3000;
+                }
+                else
+                {
+                    SetDipSw.Maxlinelitbonus = handpoint->password;
+                }
+                sprintf(buf, "t6.txt=\"%ld\"\xff\xff\xff", SetDipSw.Maxlinelitbonus);
+                HTMSend(buf);
+                break;
+            case 7: // t7: 中彩金最小值 (Minlinemidbonus)
+                handpoint->password = strtodex(handpoint->data);
+                if (handpoint->password < 3000)
+                {
+                    SetDipSw.Minlinemidbonus = 3000;
+                }
+                else if (handpoint->password > 5000)
+                {
+                    SetDipSw.Minlinemidbonus = 5000;
+                }
+                else
+                {
+                    SetDipSw.Minlinemidbonus = handpoint->password;
+                }
+                sprintf(buf, "t7.txt=\"%ld\"\xff\xff\xff", SetDipSw.Minlinemidbonus);
+                HTMSend(buf);
+                break;
+            case 8: // t8: 中彩金最大值 (Maxlinemidbonus)
+                handpoint->password = strtodex(handpoint->data);
+                if (handpoint->password < 5000)
+                {
+                    SetDipSw.Maxlinemidbonus = 5000;
+                }
+                else if (handpoint->password > 8000)
+                {
+                    SetDipSw.Maxlinemidbonus = 8000;
+                }
+                else
+                {
+                    SetDipSw.Maxlinemidbonus = handpoint->password;
+                }
+                sprintf(buf, "t8.txt=\"%ld\"\xff\xff\xff", SetDipSw.Maxlinemidbonus);
+                HTMSend(buf);
+                break;
+            case 9: // t9: 大彩金最小值 (Minlinebigbonus)
+                handpoint->password = strtodex(handpoint->data);
+                if (handpoint->password < 8000)
+                {
+                    SetDipSw.Minlinebigbonus = 8000;
+                }
+                else if (handpoint->password > 10000)
+                {
+                    SetDipSw.Minlinebigbonus = 10000;
+                }
+                else
+                {
+                    SetDipSw.Minlinebigbonus = handpoint->password;
+                }
+                sprintf(buf, "t9.txt=\"%ld\"\xff\xff\xff", SetDipSw.Minlinebigbonus);
+                HTMSend(buf);
+                break;
+            case 10: // t10: 大彩金最大值 (Maxlinebigbonus) - 根据 HMI 标签，这里原本显示“大彩金最小值”，但逻辑上应是最大值
+                handpoint->password = strtodex(handpoint->data);
+                if (handpoint->password < 10000)
+                {
+                    SetDipSw.Maxlinebigbonus = 10000;
+                }
+                else if (handpoint->password > 15000)
+                {
+                    SetDipSw.Maxlinebigbonus = 15000;
+                }
+                else
+                {
+                    SetDipSw.Maxlinebigbonus = handpoint->password;
+                }
+                sprintf(buf, "t10.txt=\"%ld\"\xff\xff\xff", SetDipSw.Maxlinebigbonus); // 发送最大值回 HMI
+                HTMSend(buf);
+                break;
+
+            case 11:                                                                                        // t11: 彩金选择 (BONUS_FLG)
+                SetDipSw.PlayFunEn ^= BONUS_FLG;                                                            // 翻转标志位
+                sprintf(buf, "t11.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & BONUS_FLG) ? "开" : "关"); // 发送新的状态回 HMI
+                HTMSend(buf);
+                break;
+            case 12: // t12: 明牌选择 (MINGPAI_FLG)
+                SetDipSw.PlayFunEn ^= MINGPAI_FLG;
+                sprintf(buf, "t12.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & MINGPAI_FLG) ? "开" : "关");
+                HTMSend(buf);
+                break;
+            case 13: // t13: 幸运座位 (LUCKBIT_FLG)
+                SetDipSw.PlayFunEn ^= LUCKBIT_FLG;
+                sprintf(buf, "t13.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & LUCKBIT_FLG) ? "开" : "关");
+                HTMSend(buf);
+                break;
+            case 14: // t14: 加倍选择 (FANBEI_FLG)
+                SetDipSw.PlayFunEn ^= FANBEI_FLG;
+                sprintf(buf, "t14.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & FANBEI_FLG) ? "开" : "关");
+                HTMSend(buf);
+                break;
+            case 15: // t15: 全中选择 (ALLWIN_FLG)
+                SetDipSw.PlayFunEn ^= ALLWIN_FLG;
+                sprintf(buf, "t15.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & ALLWIN_FLG) ? "开" : "关");
+                HTMSend(buf);
+                break;
+            case 16: // t16: 送灯选择 (SONGDENG_FLG)
+                SetDipSw.PlayFunEn ^= SONGDENG_FLG;
+                sprintf(buf, "t16.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & SONGDENG_FLG) ? "开" : "关");
+                HTMSend(buf);
+                break;
+            case 17: // t17: 积分选择 (JIFEN_FLG)
+                SetDipSw.PlayFunEn ^= JIFEN_FLG;
+                sprintf(buf, "t17.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & JIFEN_FLG) ? "开" : "关");
+                HTMSend(buf);
+                break;
+            case 0x15: // t18: 积分比例 (Jifenrate)
+                handpoint->password = strtodex(handpoint->data);
+                if (handpoint->password > 100){
+                    SetDipSw.Jifenrate = 100;
+                }
+                if (handpoint->password < 0){
+                    SetDipSw.Jifenrate = 0;
+                }
+                else{
+                    SetDipSw.Jifenrate = handpoint->password;
+                }
+                sprintf(buf, "t18.txt=\"%ld\"\xff\xff\xff", SetDipSw.Jifenrate);
+                HTMSend(buf);
+                break;
+            default:
+                break;
             }
         }
     }

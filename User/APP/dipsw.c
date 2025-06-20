@@ -29,10 +29,13 @@ uint32_t GetMaxBonus(DipSwType *dipsw) { return dipsw->MaxBonus; }
 
 uint16_t GetPlayFun(DipSwType *dipsw) { return dipsw->PlayFunEn; }
 
+uint16_t GetLuckTimes(DipSwType *dipsw) { return dipsw->LuckTimes; }
 uint16_t GetLuckIndex(DipSwType *dipsw) { return dipsw->LuckIndex; }
 
 uint32_t GetMinJifen(DipSwType *dipsw) { return dipsw->MinJifen; }
 uint32_t GetJifenRate(DipSwType *dipsw) { return dipsw->Jifenrate; }
+
+uint32_t GetTouCaiRate(DipSwType *dipsw) { return dipsw->Toucairate; }
 
 uint32_t GetLineMinLitBonus(DipSwType *dipsw) { return dipsw->Minlinelitbonus; }
 uint32_t GetLineMaxLitBonus(DipSwType *dipsw) { return dipsw->Maxlinelitbonus; }

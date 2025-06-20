@@ -7,5 +7,5 @@
         "includes.h": "c",
         "gameflow.h": "c"
     },
-    "Codegeex.CompletionDelay": 1
+    "Codegeex.CompletionDelay": 0.5
 }

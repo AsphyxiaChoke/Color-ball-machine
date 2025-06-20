@@ -40,6 +40,7 @@
 #define ALLWIN_FLG (1UL << 5)   // 全中功能
 #define SONGDENG_FLG (1UL << 6) // 送灯功能
 #define PLAYING_FLG (1UL << 7)  // 演示功能
+#define TOUCAI_FLG (1UL << 8)    // 退币功能
 //-------------------------------------------------------------
 // II2C save data flg
 //-------------------------------------------------------------
@@ -88,11 +89,13 @@ typedef struct sw_struct
     uint8_t CoLtd;            // 公司台标志
     uint16_t FuctoryFunEn;    // 公司设置游戏功能选择
     uint16_t PlayFunEn;       // 游戏幸运功能选择
-    uint8_t LuckIndex;        // 幸运奖比例
+    uint8_t LuckTimes;        // 幸运次数
+    uint8_t LuckIndex;        // 幸运奖比例  累计到幸运奖池中的比例
     uint32_t MinJifen;        // 最小积分
     uint32_t Jifenrate;       // 积分累加比例
+    uint32_t Toucairate;     // 头彩比例
     uint32_t Maxlinelitbonus; // 最大连线小彩金
-    uint32_t Minlinelitbonus; // 最小连线小菜金
+    uint32_t Minlinelitbonus; // 最小连线小彩金
     uint32_t Maxlinemidbonus; // 最大连线中彩金
     uint32_t Minlinemidbonus; // 最小连线中彩金
     uint32_t Maxlinebigbonus; // 最大连线大彩金

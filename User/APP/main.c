@@ -130,6 +130,7 @@ void ClearZero(uint8_t n)
         dipswpoint->Maxbet = 9999;
         dipswpoint->MinJifen = 0;
         dipswpoint->Jifenrate = 0;
+        dipswpoint->LuckTimes = 0;
         dipswpoint->LuckIndex = 0;
         dipswpoint->Playing = 0;
         dipswpoint->PlayFunEn = 0;
@@ -141,6 +142,8 @@ void ClearZero(uint8_t n)
         dipswpoint->Minlinemidbonus = 1000;
         dipswpoint->Maxlinelitbonus = 1000;
         dipswpoint->Minlinelitbonus = 100;
+        dipswpoint->Toucairate = 0;
+        dipswpoint->LuckTimes = 5;
 
         WriteEEPROM(eeDipSw, (uint8_t *)dipswpoint, sizeof(DipSw));
 

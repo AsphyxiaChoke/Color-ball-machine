@@ -28,10 +28,23 @@ Project File Date:  06/13/2025
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin'
 Build target 'Fire_uCOS'
 compiling GameSet.c...
+..\..\User\APP\GameSet.c(418): warning:  #223-D: function "GetLuckTimes" declared implicitly
+                          sprintf(buf, "t15.txt=\"%ld\"\xff\xff\xff", GetLuckTimes(&SetDipSw));
+..\..\User\APP\GameSet.c(531): warning:  #223-D: function "GetTouCaiRate" declared implicitly
+                          sprintf(buf, "t4.txt=\"%ld\"\xff\xff\xff", GetTouCaiRate(&SetDipSw)); // t4: Í·²Ê±ÈÀý
+..\..\User\APP\GameSet.c(834): warning:  #223-D: function "GetLuckTimes" declared implicitly
+                      sprintf(buf, "t15.txt=\"%ld\"\xff\xff\xff", GetLuckTimes(&SetDipSw));
+..\..\User\APP\GameSet.c(840): warning:  #223-D: function "GetLuckTimes" declared implicitly
+                      sprintf(buf, "t15.txt=\"%ld\"\xff\xff\xff", GetLuckTimes(&SetDipSw));
+..\..\User\APP\GameSet.c(1152): warning:  #186-D: pointless comparison of unsigned integer with zero
+                  else if (handpoint->password < 0)
+..\..\User\APP\GameSet.c(1306): warning:  #186-D: pointless comparison of unsigned integer with zero
+                  if (handpoint->password < 0){
+..\..\User\APP\GameSet.c: 6 warnings, 0 errors
 linking...
-Program Size: Code=52972 RO-data=1220 RW-data=1876 ZI-data=40292  
+Program Size: Code=53740 RO-data=1220 RW-data=1876 ZI-data=40300  
 After Build - User command #1: fromelf.exe --bin -o ..\..\Output\Master_prg.bin ..\..\Output\Master_prg.axf
-"..\..\Output\Master_prg.axf" - 0 Error(s), 0 Warning(s).
+"..\..\Output\Master_prg.axf" - 0 Error(s), 6 Warning(s).
 
 <h2>Software Packages used:</h2>
 
