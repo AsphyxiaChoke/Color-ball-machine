@@ -447,10 +447,10 @@ ARM Macro Assembler    Page 7
   281 00000034         
   282 00000034                 END
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M7.fp.dp --apcs=
-interwork --depend=..\..\output\cpu_a.d -o..\..\output\cpu_a.o --predefine="__M
-ICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 541" --predefine="STM32H743
-xx SETA 1" --list=..\..\listing\cpu_a.lst ..\..\User\uC-CPU\ARM-Cortex-M4\RealV
-iew\cpu_a.asm
+interwork --depend=..\..\output\cpu_a.d -o..\..\output\cpu_a.o -IC:\Keil5\ARM\C
+MSIS\Include --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SET
+A 532" --predefine="STM32H743xx SETA 1" --list=..\..\listing\cpu_a.lst ..\..\Us
+er\uC-CPU\ARM-Cortex-M4\RealView\cpu_a.asm
 
 
 

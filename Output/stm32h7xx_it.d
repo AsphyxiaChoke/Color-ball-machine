@@ -6,15 +6,15 @@
 ..\..\output\stm32h7xx_it.o: ..\..\Libraries\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h
 ..\..\output\stm32h7xx_it.o: ..\..\Libraries\CMSIS\Device\ST\STM32H7xx\Include\stm32h743xx.h
 ..\..\output\stm32h7xx_it.o: ..\..\Libraries\CMSIS\Include\core_cm7.h
-..\..\output\stm32h7xx_it.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
+..\..\output\stm32h7xx_it.o: C:\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\..\output\stm32h7xx_it.o: ..\..\Libraries\CMSIS\Include\cmsis_version.h
 ..\..\output\stm32h7xx_it.o: ..\..\Libraries\CMSIS\Include\cmsis_compiler.h
 ..\..\output\stm32h7xx_it.o: ..\..\Libraries\CMSIS\Include\cmsis_armcc.h
 ..\..\output\stm32h7xx_it.o: ..\..\Libraries\CMSIS\Include\mpu_armv7.h
 ..\..\output\stm32h7xx_it.o: ..\..\Libraries\CMSIS\Device\ST\STM32H7xx\Include\system_stm32h7xx.h
 ..\..\output\stm32h7xx_it.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal.h
-..\..\output\stm32h7xx_it.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stddef.h
-..\..\output\stm32h7xx_it.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\math.h
+..\..\output\stm32h7xx_it.o: C:\Keil5\ARM\ARMCC\Bin\..\include\stddef.h
+..\..\output\stm32h7xx_it.o: C:\Keil5\ARM\ARMCC\Bin\..\include\math.h
 ..\..\output\stm32h7xx_it.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc_ex.h
 ..\..\output\stm32h7xx_it.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio.h
 ..\..\output\stm32h7xx_it.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio_ex.h
@@ -60,7 +60,7 @@
 ..\..\output\stm32h7xx_it.o: ..\..\User\uCOS-III\Ports\ARM-Cortex-M\ARMv7-M\RealView\os_cpu.h
 ..\..\output\stm32h7xx_it.o: ..\..\User\uCOS-III\Source\os_trace.h
 ..\..\output\stm32h7xx_it.o: ..\..\User\BSP\./led/bsp_led.h
-..\..\output\stm32h7xx_it.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdio.h
+..\..\output\stm32h7xx_it.o: C:\Keil5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\..\output\stm32h7xx_it.o: ..\..\User\BSP\bsp.h
 ..\..\output\stm32h7xx_it.o: ..\..\User\APP\inc\app_cfg.h
 ..\..\output\stm32h7xx_it.o: ..\..\User\APP\inc\memory.h
@@ -70,7 +70,7 @@
 ..\..\output\stm32h7xx_it.o: ..\..\User\BSP\fmc.h
 ..\..\output\stm32h7xx_it.o: ..\..\User\APP\inc\main.h
 ..\..\output\stm32h7xx_it.o: ..\..\User\APP\inc\fpga.h
-..\..\output\stm32h7xx_it.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\string.h
+..\..\output\stm32h7xx_it.o: C:\Keil5\ARM\ARMCC\Bin\..\include\string.h
 ..\..\output\stm32h7xx_it.o: ..\..\User\BSP\gpio.h
 ..\..\output\stm32h7xx_it.o: ..\..\User\BSP\spi.h
 ..\..\output\stm32h7xx_it.o: ..\..\User\BSP\usart.h

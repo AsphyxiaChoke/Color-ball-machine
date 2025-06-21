@@ -30,9 +30,9 @@ pKeyTaskFunc KeyTaskTbl[MAX_FENJI][32];
 //     KeyTaskFunc2, KeyTaskFunc2, KeyTaskFunc2, KeyTaskFunc2, KeyTaskFunc1, KeyTaskFunc1, KeyTaskFunc1, KeyTaskFunc1};
 const pKeyTaskFunc InitKeyTaskTbl[32] =
     {KeyTaskFunc1, KeyTaskFunc1, KeyTaskFunc1, KeyTaskFunc1, KeyTaskFunc1, KeyTaskWait2, KeyTaskWait2, KeyTaskWait2,
+     KeyTaskFunc2, KeyTaskFunc2, KeyTaskFunc2, KeyTaskFunc2, KeyTaskFunc2, KeyTaskFunc2, KeyTaskFunc2, KeyTaskFunc2,
      KeyTaskFunc2, KeyTaskFunc2, KeyTaskFunc2, KeyTaskFunc2, KeyTaskFunc1, KeyTaskFunc1, KeyTaskFunc1, KeyTaskFunc1,
-     KeyTaskFunc1, KeyTaskFunc1, KeyTaskFunc1, KeyTaskFunc1, KeyTaskFunc1, KeyTaskWait2, KeyTaskWait2, KeyTaskWait2,
-     KeyTaskFunc2, KeyTaskFunc2, KeyTaskFunc2, KeyTaskFunc2, KeyTaskFunc1, KeyTaskFunc1, KeyTaskFunc1, KeyTaskFunc1};
+     KeyTaskWait2, KeyTaskWait2, KeyTaskWait2, KeyTaskWait2, KeyTaskWait2, KeyTaskWait2, KeyTaskWait2, KeyTaskWait2};
 
 void *KeyTaskFunc1(uint8_t *pKeyCount, uint32_t mask, uint32_t *rtv)
 { // 按下就起作用,多次起作用

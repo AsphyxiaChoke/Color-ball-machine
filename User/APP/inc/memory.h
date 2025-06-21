@@ -22,6 +22,7 @@
 #define HIDE_FLAG (1UL << 1)
 #define QUICK_WIN (1UL << 2)
 #define COMPUTER (1UL << 3)
+#define COMPUTER_WIN2 (1UL << 5)
 #define QUICK_BONUS (1UL << 4)
 #define WINLAMP_FLAG (1UL << 6)
 #define LOCK_FLAG (1UL << 8) /*Child[0].Flag 标志*/
@@ -33,14 +34,14 @@
 // 游戏功能标志位定义
 //-------------------------------------------------------------
 #define BONUS_FLG (1UL << 0)    // 彩金功能
-#define FANBEI_FLG (1UL << 1)   // 加倍功能
-#define MINGPAI_FLG (1UL << 2)  // 明牌功能
-#define JIFEN_FLG (1UL << 3)    // 积分功能
-#define LUCKBIT_FLG (1UL << 4)  // 幸运位功能
-#define ALLWIN_FLG (1UL << 5)   // 全中功能
-#define SONGDENG_FLG (1UL << 6) // 送灯功能
-#define PLAYING_FLG (1UL << 7)  // 演示功能
-#define TOUCAI_FLG (1UL << 8)    // 退币功能
+#define MINGPAI_FLG (1UL << 1)  // 明牌功能
+#define LUCKBIT_FLG (1UL << 2)  // 幸运位功能
+#define FANBEI_FLG (1UL << 3)   // 加倍功能
+#define ALLWIN_FLG (1UL << 4)   // 全中功能
+#define SONGDENG_FLG (1UL << 5) // 送灯功能
+#define TOUBONUS_FLG (1UL << 6) // 头顶彩金功能
+#define JIFEN_FLG (1UL << 7)    // 积分功能
+#define PLAYING_FLG (1UL << 8)  // 演示功能
 //-------------------------------------------------------------
 // II2C save data flg
 //-------------------------------------------------------------
@@ -56,22 +57,20 @@
 //---------------------------------------------------
 // 机器运行错误
 //---------------------------------------------------
-#define MACHERR01 (1UL << 0)    // 顶杆故障
-#define MACHERR02 (1UL << 1)    // 帽子故障
-#define MACHERR03 (1UL << 2)    // 翻球故障
-#define MACHERR04 (1UL << 3)    // 落球故障
-#define MACHERR05 (1UL << 4)    // 中心盘故障
-#define MACHERR06 (1UL << 5)    // 机芯未联接
-#define MACHERR07 (1UL << 6)    // 球位故障
-#define MACHERR08 (1UL << 7)    // 门控故障
-#define MACHERR09 (1UL<<8) //
-
-
-
+#define MACHERR01 (1UL << 0) // 顶杆故障
+#define MACHERR02 (1UL << 1) // 帽子故障
+#define MACHERR03 (1UL << 2) // 翻球故障
+#define MACHERR04 (1UL << 3) // 落球故障
+#define MACHERR05 (1UL << 4) // 中心盘故障
+#define MACHERR06 (1UL << 5) // 机芯未联接
+#define MACHERR07 (1UL << 6) // 球位故障
+#define MACHERR08 (1UL << 7) // 门控故障
+#define MACHERR09 (1UL << 8) //
 
 #pragma pack(1)
 typedef struct sw_struct
 {
+    //uint8_t BaseBeiIndex;     // 倍率选择
     uint16_t NoteIn;          // 开分大小
     uint16_t NoteOut;         // 下分大小
     uint16_t CoinIn;          // 投币比例
@@ -162,7 +161,27 @@ enum GAME_PRO
     PC_HISTORY = 20, // 历史记录
     PC_LUCKHISTORY   // 历史记录奖项
 };
-
+enum GAME_LUCK
+{
+    LUCK_00 = 0,     // 没有特殊奖
+    LUCK_BONUS,  // 连线彩金
+    LUCK_MINGPAI,    // 明牌
+    LUCK_LUCKBIT,      // 幸运位
+    LUCK_FANBEI,     // 翻倍
+    LUCK_ALLWIN,  // 全中
+    LUCK_SONGDENG,   // 送灯
+    LUCK_TOUBONUS,   // 头顶彩金
+    LUCK_JIFEN      // 返分
+};
+typedef struct LuckJiangType
+{
+    uint32_t JiangJinChi;
+    uint32_t JiangJinChi_In;
+    uint32_t JiangJinChi_Out;
+    uint32_t JiangJinWin[10];
+    uint32_t JiangJinCnt[10];
+    uint32_t Luck_AllWin2;
+}LuckJiangType;
 typedef struct ChildType
 {
     uint32_t Credit;             // 4
@@ -176,6 +195,9 @@ typedef struct ChildType
     uint32_t KeyIn;              // 开分总开		//4
     uint32_t KeyOut;             // 洗分总洗		//4
 
+    uint32_t JiFen;              // LUO添加 分机积分。
+    uint32_t JiFenBet;           // LUO添加 分机积分。
+    uint32_t JiFenWin;           // LUO添加 分机积分。
     uint32_t PlayCnt;
     uint32_t WinCnt;
 

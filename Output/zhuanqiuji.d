@@ -19,7 +19,7 @@
 ..\..\output\zhuanqiuji.o: ..\..\Libraries\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h
 ..\..\output\zhuanqiuji.o: ..\..\Libraries\CMSIS\Device\ST\STM32H7xx\Include\stm32h743xx.h
 ..\..\output\zhuanqiuji.o: ..\..\Libraries\CMSIS\Include\core_cm7.h
-..\..\output\zhuanqiuji.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
+..\..\output\zhuanqiuji.o: C:\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\..\output\zhuanqiuji.o: ..\..\Libraries\CMSIS\Include\cmsis_version.h
 ..\..\output\zhuanqiuji.o: ..\..\Libraries\CMSIS\Include\cmsis_compiler.h
 ..\..\output\zhuanqiuji.o: ..\..\Libraries\CMSIS\Include\cmsis_armcc.h
@@ -30,8 +30,8 @@
 ..\..\output\zhuanqiuji.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h
 ..\..\output\zhuanqiuji.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_def.h
 ..\..\output\zhuanqiuji.o: ..\..\Libraries\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h
-..\..\output\zhuanqiuji.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stddef.h
-..\..\output\zhuanqiuji.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\math.h
+..\..\output\zhuanqiuji.o: C:\Keil5\ARM\ARMCC\Bin\..\include\stddef.h
+..\..\output\zhuanqiuji.o: C:\Keil5\ARM\ARMCC\Bin\..\include\math.h
 ..\..\output\zhuanqiuji.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc_ex.h
 ..\..\output\zhuanqiuji.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio.h
 ..\..\output\zhuanqiuji.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio_ex.h
@@ -58,7 +58,7 @@
 ..\..\output\zhuanqiuji.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart.h
 ..\..\output\zhuanqiuji.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h
 ..\..\output\zhuanqiuji.o: ..\..\User\BSP\./led/bsp_led.h
-..\..\output\zhuanqiuji.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdio.h
+..\..\output\zhuanqiuji.o: C:\Keil5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\..\output\zhuanqiuji.o: ..\..\User\BSP\bsp.h
 ..\..\output\zhuanqiuji.o: ..\..\User\APP\inc\app_cfg.h
 ..\..\output\zhuanqiuji.o: ..\..\User\APP\inc\memory.h
@@ -68,7 +68,7 @@
 ..\..\output\zhuanqiuji.o: ..\..\User\BSP\fmc.h
 ..\..\output\zhuanqiuji.o: ..\..\User\APP\inc\main.h
 ..\..\output\zhuanqiuji.o: ..\..\User\APP\inc\fpga.h
-..\..\output\zhuanqiuji.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\string.h
+..\..\output\zhuanqiuji.o: C:\Keil5\ARM\ARMCC\Bin\..\include\string.h
 ..\..\output\zhuanqiuji.o: ..\..\User\BSP\gpio.h
 ..\..\output\zhuanqiuji.o: ..\..\User\BSP\spi.h
 ..\..\output\zhuanqiuji.o: ..\..\User\BSP\usart.h

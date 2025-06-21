@@ -20,7 +20,7 @@
 ..\..\output\main.o: ..\..\Libraries\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h
 ..\..\output\main.o: ..\..\Libraries\CMSIS\Device\ST\STM32H7xx\Include\stm32h743xx.h
 ..\..\output\main.o: ..\..\Libraries\CMSIS\Include\core_cm7.h
-..\..\output\main.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
+..\..\output\main.o: C:\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\..\output\main.o: ..\..\Libraries\CMSIS\Include\cmsis_version.h
 ..\..\output\main.o: ..\..\Libraries\CMSIS\Include\cmsis_compiler.h
 ..\..\output\main.o: ..\..\Libraries\CMSIS\Include\cmsis_armcc.h
@@ -31,8 +31,8 @@
 ..\..\output\main.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h
 ..\..\output\main.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_def.h
 ..\..\output\main.o: ..\..\Libraries\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h
-..\..\output\main.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stddef.h
-..\..\output\main.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\math.h
+..\..\output\main.o: C:\Keil5\ARM\ARMCC\Bin\..\include\stddef.h
+..\..\output\main.o: C:\Keil5\ARM\ARMCC\Bin\..\include\math.h
 ..\..\output\main.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc_ex.h
 ..\..\output\main.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio.h
 ..\..\output\main.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio_ex.h
@@ -59,7 +59,7 @@
 ..\..\output\main.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart.h
 ..\..\output\main.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h
 ..\..\output\main.o: ..\..\User\BSP\./led/bsp_led.h
-..\..\output\main.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdio.h
+..\..\output\main.o: C:\Keil5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\..\output\main.o: ..\..\User\BSP\bsp.h
 ..\..\output\main.o: ..\..\User\APP\inc\app_cfg.h
 ..\..\output\main.o: ..\..\User\APP\inc\memory.h
@@ -69,7 +69,7 @@
 ..\..\output\main.o: ..\..\User\BSP\fmc.h
 ..\..\output\main.o: ..\..\User\APP\inc\main.h
 ..\..\output\main.o: ..\..\User\APP\inc\fpga.h
-..\..\output\main.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\string.h
+..\..\output\main.o: C:\Keil5\ARM\ARMCC\Bin\..\include\string.h
 ..\..\output\main.o: ..\..\User\BSP\gpio.h
 ..\..\output\main.o: ..\..\User\BSP\spi.h
 ..\..\output\main.o: ..\..\User\BSP\usart.h

@@ -8,6 +8,8 @@ const uint32_t g_NewMul[4][5]=
     {400,400,400,400,2000}
 };
 
+//uint8_t GetBaseBei(DipSwType *dipsw) { return dipsw->BaseBeiIndex; }
+
 uint32_t GetNoteIn(DipSwType *dipsw) { return dipsw->NoteIn; }
 uint32_t GetNoteOUt(DipSwType *dipsw) { return dipsw->NoteOut; }
 uint32_t GetCoinIn(DipSwType *dipsw) { return dipsw->CoinIn; }

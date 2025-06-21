@@ -302,7 +302,7 @@ void GameSetMune(HANDTYPE *handpoint)
         }
         else
         {
-            sprintf(buf, "t2.txt=\"%d-%d-%02x\"\xff\xff\xff", ProcMem + 1, GameTime, GamePai);
+            sprintf(buf, "t2.txt=\"%d-%d-%02x-%02x\"\xff\xff\xff", ProcMem + 1, GameTime, GamePai,Luck);
             HTMSend(buf);
         }
     }
@@ -828,15 +828,15 @@ void GameSetBaseSet(HANDTYPE *handpoint)
                 break;
             case 16: // ÐÒÔË´ÎÊý
                 handpoint->password = strtodex(handpoint->data);
-                if (handpoint->password <= 0)
+                if (handpoint->password == 0)
                 {
                     SetDipSw.LuckTimes = 0;
                     sprintf(buf, "t15.txt=\"%ld\"\xff\xff\xff", GetLuckTimes(&SetDipSw));
                     HTMSend(buf);
                 }
-                else if (handpoint->password > 10)
+                else if (handpoint->password > 16)
                 {
-                    SetDipSw.LuckTimes = 10;
+                    SetDipSw.LuckTimes = 15;
                     sprintf(buf, "t15.txt=\"%ld\"\xff\xff\xff", GetLuckTimes(&SetDipSw));
                     HTMSend(buf);
                 }

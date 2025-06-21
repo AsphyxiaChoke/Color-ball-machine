@@ -20,7 +20,7 @@
 ..\..\output\dipsw.o: ..\..\Libraries\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h
 ..\..\output\dipsw.o: ..\..\Libraries\CMSIS\Device\ST\STM32H7xx\Include\stm32h743xx.h
 ..\..\output\dipsw.o: ..\..\Libraries\CMSIS\Include\core_cm7.h
-..\..\output\dipsw.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
+..\..\output\dipsw.o: C:\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\..\output\dipsw.o: ..\..\Libraries\CMSIS\Include\cmsis_version.h
 ..\..\output\dipsw.o: ..\..\Libraries\CMSIS\Include\cmsis_compiler.h
 ..\..\output\dipsw.o: ..\..\Libraries\CMSIS\Include\cmsis_armcc.h
@@ -31,8 +31,8 @@
 ..\..\output\dipsw.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h
 ..\..\output\dipsw.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_def.h
 ..\..\output\dipsw.o: ..\..\Libraries\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h
-..\..\output\dipsw.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stddef.h
-..\..\output\dipsw.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\math.h
+..\..\output\dipsw.o: C:\Keil5\ARM\ARMCC\Bin\..\include\stddef.h
+..\..\output\dipsw.o: C:\Keil5\ARM\ARMCC\Bin\..\include\math.h
 ..\..\output\dipsw.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc_ex.h
 ..\..\output\dipsw.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio.h
 ..\..\output\dipsw.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio_ex.h
@@ -59,7 +59,7 @@
 ..\..\output\dipsw.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart.h
 ..\..\output\dipsw.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h
 ..\..\output\dipsw.o: ..\..\User\BSP\./led/bsp_led.h
-..\..\output\dipsw.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdio.h
+..\..\output\dipsw.o: C:\Keil5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\..\output\dipsw.o: ..\..\User\BSP\bsp.h
 ..\..\output\dipsw.o: ..\..\User\APP\inc\app_cfg.h
 ..\..\output\dipsw.o: ..\..\User\APP\inc\memory.h
@@ -69,7 +69,7 @@
 ..\..\output\dipsw.o: ..\..\User\BSP\fmc.h
 ..\..\output\dipsw.o: ..\..\User\APP\inc\main.h
 ..\..\output\dipsw.o: ..\..\User\APP\inc\fpga.h
-..\..\output\dipsw.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\string.h
+..\..\output\dipsw.o: C:\Keil5\ARM\ARMCC\Bin\..\include\string.h
 ..\..\output\dipsw.o: ..\..\User\BSP\gpio.h
 ..\..\output\dipsw.o: ..\..\User\BSP\spi.h
 ..\..\output\dipsw.o: ..\..\User\BSP\usart.h

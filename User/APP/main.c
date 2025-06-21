@@ -118,6 +118,7 @@ void ClearZero(uint8_t n)
     if (n)
     {
         dipswpoint = &DipSw;
+        //dipswpoint->BaseBeiIndex = 0;//Ä¬ÈÏÑ¡Ôñ3.8-3.8-4-4-20
         dipswpoint->NoteIn = 100;
         dipswpoint->NoteOut = 100;
         dipswpoint->CoinIn = 1;

@@ -4,13 +4,20 @@ ChildCmdTYPE *ChildCmdpoint;
 
 uint8_t ChildReadResult()
 {
-    if (Luck & 0x06)
-    {
-        return GamePai & 0x3f;
-    }
-    return 0;
+	if (MingPai)
+	{
+        uint8_t result;
+		MingPai = 2;
+        result = ((GamePai & 0x0f) >= 0x0e) ? 4 : (GamePai & 0x30) >> 4;
+		Luck = (result<<4) + LUCK_MINGPAI;
+		return GamePai&0x3f;
+	}
+	else
+	{
+		Luck = 0;
+		return 0;
+	}
 }
-
 void ChildRuncmd(ChildType *pChild, uint8_t cmd, uint8_t childid)
 {
     uint8_t i, j, *point;
@@ -23,7 +30,7 @@ void ChildRuncmd(ChildType *pChild, uint8_t cmd, uint8_t childid)
     cmdbuf.totalgame = ChildTotalGame;
     cmdbuf.gamecount = ChildGameCount;
     cmdbuf.linebonus = LineBonus;
-    cmdbuf.result = ChildReadResult();
+    cmdbuf.result = ChildReadResult();//????
     cmdbuf.Luck = Luck;
     cmdbuf.Conv = pChild->Conv;
     cmdbuf.Dec = GetDec(&DipSw);
@@ -45,6 +52,10 @@ void ChildRuncmd(ChildType *pChild, uint8_t cmd, uint8_t childid)
     }
     cmdbuf.childid = childid;
     cmdbuf.gamestation = Gamestation;
+    cmdbuf.minbonus = MinBonus;
+    cmdbuf.midbonus = MidBonus;
+    cmdbuf.maxbonus = MaxBonus;
+    cmdbuf.childwin2 = pChild->Win2;
     for (i = 0, point = (uint8_t *)&cmdbuf; i < sizeof(ChildCmdType) - 2; i++)
     {
         register uint8_t ch;
@@ -95,6 +106,10 @@ void ChildRunresult(ChildType *pChild, uint8_t cmd, uint8_t childid)
     }
     cmdbuf.childid = childid;
     cmdbuf.gamestation = Gamestation;
+    cmdbuf.minbonus = MinBonus;
+    cmdbuf.midbonus = MidBonus;
+    cmdbuf.maxbonus = MaxBonus;
+    cmdbuf.childwin2 = pChild->Win2;
     for (i = 0, point = (uint8_t *)&cmdbuf; i < sizeof(ChildCmdType) - 2; i++)
     {
         register uint8_t ch;

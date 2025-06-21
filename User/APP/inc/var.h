@@ -59,9 +59,17 @@ extern uint16_t DispGameCount;  // 显示游戏局数
 extern uint16_t ChildTotalGame; // 玩家显示轮数
 extern uint16_t ChildGameCount; // 玩家显示局数
 extern uint32_t LineBonus;
+extern uint32_t MaxBonus;                           // 头顶大彩金
+extern uint32_t MidBonus;                           // 头顶中彩金
+extern uint32_t MinBonus;                           // 头顶小彩金
 extern uint8_t GamePai;
+extern uint8_t MingPai;                              // 明牌状态标志
 extern uint8_t Luck;
-extern uint8_t YK_Luck;
+extern uint8_t Luck_CS;
+extern uint8_t LuckBuf[TOTAL_JUSHU];                // 游戏幸运奖BUF
+extern uint8_t LuckFunBuf[10];                       // 游戏幸运奖类目
+extern LuckJiangType LuckJiang;
+
 extern uint32_t DingFen[MAX_FENJI];
 extern uint8_t New_Bill[TOTAL_JUSHU * TOTAL_LUNSHU]; //
 //------------------------------------------------------

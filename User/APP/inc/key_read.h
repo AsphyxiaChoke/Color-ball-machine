@@ -77,9 +77,9 @@ extern void* KeyTaskWait0(uint8_t *pKeyCount,uint32_t mask, uint32_t *rtv);
 __inline uint32_t ChildReadKey(ChildInputType *pChildInput)
 {
   return ((uint32_t)(pChildInput->Key1) << 0) |
-         ((uint32_t)(pChildInput->Key3) << 8) |
-         ((uint32_t)(pChildInput->Android_Key1) << 16)|
-         ((uint32_t)(pChildInput->Android_Key2) << 24);
+         ((uint32_t)(pChildInput->Key2) << 8) |
+         ((uint32_t)(pChildInput->Key3) << 16)|
+         ((uint32_t)(pChildInput->Key3) << 24);
 }
 int KEY_SCAN(uint32_t mask);
 void Master_key_proc(void);

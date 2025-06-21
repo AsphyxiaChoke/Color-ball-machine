@@ -2,6 +2,7 @@
 #define __DIPSW_H__
 #include "includes.h"
 
+uint8_t GetBaseBei(DipSwType *dipsw);
 uint32_t GetNoteIn(DipSwType *dipsw);
 uint32_t GetNoteOUt(DipSwType *dipsw);
 uint32_t GetCoinIn(DipSwType *dipsw);
@@ -23,7 +24,7 @@ uint32_t GetMaxBonus(DipSwType *dipsw);
 
 uint16_t GetPlayFun(DipSwType *dipsw);
 
-uint16_t GetLuckIndex(DipSwType *dipsw);
+uint8_t GetLuckIndex(DipSwType *dipsw);
 
 uint32_t GetMinJifen(DipSwType *dipsw);
 uint32_t GetJifenRate(DipSwType *dipsw);

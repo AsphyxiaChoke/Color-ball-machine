@@ -96,7 +96,7 @@ uint8_t USART_SendDataString(uint8_t datacmd, uint8_t *pData, uint8_t buflen)
 
     MasterUart->TxBuf[0] = UART_STAR_CHAR;
     MasterUart->TxBuf[1] = datacmd;
-    MasterUart->TxBuf[2] = buflen - 2;
+    MasterUart->TxBuf[2] = buflen;
     sendlen = 3;
     for (i = 0; i < buflen; i++, pData++)
     {

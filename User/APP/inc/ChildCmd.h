@@ -9,7 +9,7 @@ typedef struct ChildCmdType
     uint8_t gametime;                   // 游戏时间--2
     uint16_t totalgame;                 // 游戏轮数--3，4
     uint16_t gamecount;                 // 游戏局数--5，6
-    uint32_t linebonus;                 // 游戏随机彩金--7，8，9，10
+    uint32_t linebonus;                 // 游戏随机彩金--7，8，9，10  
     uint8_t result;                     // 游戏结果--11
     uint8_t Luck;                       // 游戏幸运奖--12
     uint16_t Conv;                      // 切换--13，14
@@ -25,9 +25,12 @@ typedef struct ChildCmdType
     uint32_t childTotalbet[BET_NUMBER]; // 5*4=20--47, ... ,66
     uint8_t childid;                    // 分机号--67
     uint32_t gamestation;               // 游戏状态--68,69,70,71
-    uint16_t checksum;                  // 校验和--72,73
-} ChildCmdType;
-
+    uint32_t minbonus;                 // 游戏随机彩金--72,73,74,75
+    uint32_t midbonus;                 // 游戏随机彩金--76，77，78，79
+    uint32_t maxbonus;                 // 游戏随机彩金--80，81，82，83
+    uint32_t childwin2;                 //分机二次中奖，赢分--84，85，86，87
+    uint16_t checksum;                  // 校验和--88,89
+}  ChildCmdType;
 typedef struct ChildHistoryType
 {
     uint8_t procmd;          // 游戏流程--1

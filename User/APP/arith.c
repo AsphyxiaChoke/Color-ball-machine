@@ -63,7 +63,7 @@ void FlashBetLED(ChildType *pChild, uint32_t flash)
 	}
 	else
 	{
-		uint8_t pai = GamePai; // GetGameResult(PlayPaiBuf, GameCount);
+		uint8_t pai = GamePai;
 		switch (pai & 0x30)
 		{
 		case 0x00:
@@ -87,7 +87,7 @@ void FlashBetLED(ChildType *pChild, uint32_t flash)
 			break;
 		}
 	}
-	pChild->pChildDisp->Count[0] = (uint8_t)(pChild->KeyLED | pChild->Count & TUI_FLAG); // 押分灯
+	pChild->pChildDisp->Count[0] = (uint8_t)(pChild->KeyLED ); // 押分灯
 	pChild->pChildDisp->Count[1] = (uint8_t)(pChild->KeyLED >> 8);
 	pChild->pChildDisp->Count[2] = (uint8_t)(pChild->KeyLED >> 16);
 }
@@ -256,6 +256,9 @@ void CoinKeyProc1(ChildType *pChild)
 		pChild->Credit = (pChild->Credit <= total) ? 0 : (pChild->Credit - total);
 		CurrPayoff -= total;
 		pChild->CoinOut += total;
+		pChild->JiFen = 0;//有退币，玩家积分清零。
+		pChild->JiFenBet = 0;//有退币，玩家积分清零。
+		pChild->JiFenWin = 0;//有退币，玩家积分清零。
 		SetTuiBiNum(pChild);
 		WriteChildAccu(pChild, eeCredit, pChild->Credit);
 		WriteEEPROM(eeCurrPayoff, (uint8_t*)&CurrPayoff, sizeof(CurrPayoff));
@@ -282,6 +285,10 @@ void CoinKeyProc1(ChildType *pChild)
 				note = 0;
 			if (pChild->Credit >= note && note != 0)
 			{
+				pChild->JiFen = 0;//有下分，玩家积分清零。
+				pChild->JiFenBet = 0;//有退币，玩家积分清零。
+				pChild->JiFenWin = 0;//有退币，玩家积分清零。
+				
 				pChild->Credit -= note;
 				CurrPayoff -= note;
 				pChild->KeyOut += note;
@@ -361,7 +368,7 @@ void CoinKeyProc1(ChildType *pChild)
 		return;
 	}
 	// 如果正在退币或洗分,立刻返回
-		if (ChildKeyXiOrTui(pChild))
+	if (ChildKeyXiOrTui(pChild))
 		return;
 
 	if (ChildKeyTUI(pChild)) // 退币
