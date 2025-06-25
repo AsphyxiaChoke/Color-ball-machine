@@ -5,7 +5,8 @@
         "stm32h7xx_hal_conf.h": "c",
         "gameset.h": "c",
         "includes.h": "c",
-        "gameflow.h": "c"
+        "gameflow.h": "c",
+        "spi.h": "c"
     },
     "Codegeex.CompletionDelay": 0.5
 }

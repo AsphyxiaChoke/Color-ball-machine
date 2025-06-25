@@ -16,6 +16,7 @@ int32_t AccoutPassWord; // 查账密码
 int32_t ConfigPassWord; // 参数密码
 int32_t SystemPassWord; // 系统密码
 int32_t FuncPassWord;   // 功能密码
+int32_t RecordPassWord; // 记录密码
 uint8_t Qiuwei[10];     // 机器球位
 //------------------------------------------------------
 // 游戏参数重设使用
@@ -58,6 +59,8 @@ uint8_t Luck_CS;
 uint8_t LuckBuf[TOTAL_JUSHU];                // 游戏幸运奖BUF
 uint8_t LuckFunBuf[10];                       // 游戏幸运奖类目
 LuckJiangType LuckJiang;                   // 幸运奖金类型
+LuckJiangType RecordLuckJiang;             
+GameRecordType GameRecord;               // 游戏记录
 
 uint32_t DingFen[MAX_FENJI];                  //
 uint8_t New_Bill[TOTAL_JUSHU * TOTAL_LUNSHU]; //

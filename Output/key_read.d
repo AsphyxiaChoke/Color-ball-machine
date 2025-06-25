@@ -20,7 +20,7 @@
 ..\..\output\key_read.o: ..\..\Libraries\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h
 ..\..\output\key_read.o: ..\..\Libraries\CMSIS\Device\ST\STM32H7xx\Include\stm32h743xx.h
 ..\..\output\key_read.o: ..\..\Libraries\CMSIS\Include\core_cm7.h
-..\..\output\key_read.o: C:\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
+..\..\output\key_read.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
 ..\..\output\key_read.o: ..\..\Libraries\CMSIS\Include\cmsis_version.h
 ..\..\output\key_read.o: ..\..\Libraries\CMSIS\Include\cmsis_compiler.h
 ..\..\output\key_read.o: ..\..\Libraries\CMSIS\Include\cmsis_armcc.h
@@ -31,8 +31,8 @@
 ..\..\output\key_read.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h
 ..\..\output\key_read.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_def.h
 ..\..\output\key_read.o: ..\..\Libraries\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h
-..\..\output\key_read.o: C:\Keil5\ARM\ARMCC\Bin\..\include\stddef.h
-..\..\output\key_read.o: C:\Keil5\ARM\ARMCC\Bin\..\include\math.h
+..\..\output\key_read.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stddef.h
+..\..\output\key_read.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\math.h
 ..\..\output\key_read.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc_ex.h
 ..\..\output\key_read.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio.h
 ..\..\output\key_read.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio_ex.h
@@ -59,7 +59,7 @@
 ..\..\output\key_read.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart.h
 ..\..\output\key_read.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h
 ..\..\output\key_read.o: ..\..\User\BSP\./led/bsp_led.h
-..\..\output\key_read.o: C:\Keil5\ARM\ARMCC\Bin\..\include\stdio.h
+..\..\output\key_read.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdio.h
 ..\..\output\key_read.o: ..\..\User\BSP\bsp.h
 ..\..\output\key_read.o: ..\..\User\APP\inc\app_cfg.h
 ..\..\output\key_read.o: ..\..\User\APP\inc\memory.h
@@ -69,7 +69,7 @@
 ..\..\output\key_read.o: ..\..\User\BSP\fmc.h
 ..\..\output\key_read.o: ..\..\User\APP\inc\main.h
 ..\..\output\key_read.o: ..\..\User\APP\inc\fpga.h
-..\..\output\key_read.o: C:\Keil5\ARM\ARMCC\Bin\..\include\string.h
+..\..\output\key_read.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\string.h
 ..\..\output\key_read.o: ..\..\User\BSP\gpio.h
 ..\..\output\key_read.o: ..\..\User\BSP\spi.h
 ..\..\output\key_read.o: ..\..\User\BSP\usart.h
@@ -86,4 +86,4 @@
 ..\..\output\key_read.o: ..\..\User\APP\inc\Gameflow.h
 ..\..\output\key_read.o: ..\..\User\APP\inc\GameOption.h
 ..\..\output\key_read.o: ..\..\User\APP\inc\ZhuanQiuJi.h
-..\..\output\key_read.o: C:\Keil5\ARM\ARMCC\Bin\..\include\stdarg.h
+..\..\output\key_read.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdarg.h

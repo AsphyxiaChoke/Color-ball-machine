@@ -249,6 +249,19 @@ void GameSetMune(HANDTYPE *handpoint)
                 sprintf(buf, "t2.txt=\"\"\xff\xff\xff");
                 HTMSend(buf);
                 break;
+            case 10: // 进入记录查询界面
+                handpoint->Oldpage = handpoint->page;
+                handpoint->Oldctr = handpoint->ctr;
+                handpoint->GameIndex = INPUT_PASS;
+                handpoint->password = 0;
+                sprintf(buf, "page 6\xff\xff\xff");
+                HTMSend(buf);
+                sprintf(buf, "t0.txt=\"输入查询密码\"\xff\xff\xff");
+                HTMSend(buf);
+                sprintf(buf, "t1.txt=\"\"\xff\xff\xff");
+                HTMSend(buf);
+                sprintf(buf, "t2.txt=\"\"\xff\xff\xff");
+                HTMSend(buf);
             }
         }
     }
@@ -302,7 +315,7 @@ void GameSetMune(HANDTYPE *handpoint)
         }
         else
         {
-            sprintf(buf, "t2.txt=\"%d-%d-%02x-%02x\"\xff\xff\xff", ProcMem + 1, GameTime, GamePai,Luck);
+            sprintf(buf, "t2.txt=\"%d-%d-%02x-%02x\"\xff\xff\xff", ProcMem + 1, GameTime, GamePai, Luck);
             HTMSend(buf);
         }
     }
@@ -310,6 +323,7 @@ void GameSetMune(HANDTYPE *handpoint)
 //----------------------------------------------------------------
 // 输入密码
 //----------------------------------------------------------------
+
 void GameSetInputPass(HANDTYPE *handpoint)
 {
     char buf[50];
@@ -526,7 +540,7 @@ void GameSetInputPass(HANDTYPE *handpoint)
                         sprintf(buf, "page 9\xff\xff\xff");
                         HTMSend(buf);
                         // 左侧
-                        sprintf(buf, "t3.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & TOUCAI_FLG) ? "开" : "关"); // t3: 头彩选择
+                        sprintf(buf, "t3.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & TOUBONUS_FLG) ? "开" : "关"); // t3: 头彩选择
                         HTMSend(buf);
                         sprintf(buf, "t4.txt=\"%ld\"\xff\xff\xff", GetTouCaiRate(&SetDipSw)); // t4: 头彩比例
                         HTMSend(buf);
@@ -566,6 +580,80 @@ void GameSetInputPass(HANDTYPE *handpoint)
                         HTMSend(buf);
                     }
                     break;
+                case 10: // 记录查询界面进入
+                    if (handpoint->password == RecordPassWord)
+                    {
+                        handpoint->Oldpage = handpoint->page;
+                        handpoint->Oldctr = handpoint->ctr;
+                        handpoint->GameIndex = RECORD_LOOK;
+                        memcpy(&RecordLuckJiang, &LuckJiang, sizeof(LuckJiang));
+                        uint64_t OutCnt_temp = 0;
+                        uint64_t AllBet_temp = 0;
+                        uint64_t AllWin_temp = 0;
+                        uint32_t AllNumber_temp = 0;
+                        sprintf(buf, "page 10\xff\xff\xff");
+                        HTMSend(buf);
+                        // 奖池开奖展示内容（左侧）
+                        for (int i = 1; i < 9; i++)
+                        {
+                            sprintf(buf, "t%d.txt=\"%lu\"\xff\xff\xff", i + 5, RecordLuckJiang.JiangJinCnt[i]); // 特殊奖次数
+                            HTMSend(buf);
+                            sprintf(buf, "t%d.txt=\"%lu\"\xff\xff\xff", i + 16, RecordLuckJiang.JiangJinWin[i]); // 特殊奖赢分
+                            HTMSend(buf);
+                            OutCnt_temp += RecordLuckJiang.JiangJinCnt[i]; // 统计开特殊奖次数
+                        }
+                        sprintf(buf, "t5.txt=\"%llu\"\xff\xff\xff", OutCnt_temp); // 开特殊奖次数
+                        HTMSend(buf);
+                        sprintf(buf, "t14.txt=\"%u\"\xff\xff\xff", RecordLuckJiang.JiangJinChi_In); // 进奖池金额
+                        HTMSend(buf);
+                        sprintf(buf, "t15.txt=\"%u\"\xff\xff\xff", RecordLuckJiang.JiangJinChi_Out); // 出奖池金额
+                        HTMSend(buf);
+                        sprintf(buf, "t16.txt=\"%u\"\xff\xff\xff", RecordLuckJiang.JiangJinChi); // 奖池金额
+                        HTMSend(buf);
+
+                        // 牌路记录（右侧）
+                        for (int i = 0; i < 16; i++)
+                        {
+                            sprintf(buf, "t%d.txt=\"%llu\"\xff\xff\xff", i + 26, GameRecord.PaiLuBet[i]);
+                            HTMSend(buf);
+                            sprintf(buf, "t%d.txt=\"%llu\"\xff\xff\xff", i + 43, GameRecord.PaiLuWin[i]);
+                            HTMSend(buf);
+                            sprintf(buf, "t%d.txt=\"%u\"\xff\xff\xff", i + 60, GameRecord.PaiLuCnt[i]);
+                            HTMSend(buf);
+                            if (GameRecord.PaiLuBet[i] > 0)
+                            {
+                                sprintf(buf, "t%d.txt=\"%llu%%\"\xff\xff\xff", i + 79, GameRecord.PaiLuWin[i] * 100 / GameRecord.PaiLuBet[i]);
+                                HTMSend(buf);
+                            }
+                            else
+                            {
+                                sprintf(buf, "t%d.txt=\"0%%\"\xff\xff\xff", i + 79);
+                                HTMSend(buf);
+                            }
+                            AllBet_temp += GameRecord.PaiLuBet[i];
+                            AllWin_temp += GameRecord.PaiLuWin[i];
+                            AllNumber_temp += GameRecord.PaiLuCnt[i];
+                        }
+
+                        // 总统计
+                        sprintf(buf, "t99.txt=\"%llu\"\xff\xff\xff", AllBet_temp); // 总押分
+                        HTMSend(buf);
+                        sprintf(buf, "t100.txt=\"%llu\"\xff\xff\xff", AllWin_temp); // 总赢分
+                        HTMSend(buf);
+                        sprintf(buf, "t101.txt=\"%u\"\xff\xff\xff", AllNumber_temp); // 总局数
+                        HTMSend(buf);
+                        if (AllBet_temp > 0)
+                        {
+                            sprintf(buf, "t102.txt=\"%lu%%\"\xff\xff\xff", (uint32_t)((AllWin_temp * 100) / AllBet_temp)); // 总盈利比
+                            HTMSend(buf);
+                        }
+                        else
+                        {
+                            sprintf(buf, "t102.txt=\"0%%\"\xff\xff\xff"); // 如果总押分为零，盈利比为 0%
+                            HTMSend(buf);
+                        }
+                    }
+
                 default:
                     break;
                 }
@@ -763,14 +851,7 @@ void GameSetBaseSet(HANDTYPE *handpoint)
                 }
                 break;
             case 11: // 演示开关
-                if (SetDipSw.PlayFunEn & PLAYING_FLG)
-                {
-                    SetDipSw.PlayFunEn &= (~PLAYING_FLG);
-                }
-                else
-                {
-                    SetDipSw.PlayFunEn |= PLAYING_FLG;
-                }
+                SetDipSw.PlayFunEn ^= (~PLAYING_FLG);
                 sprintf(buf, "t10.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & PLAYING_FLG) ? "开" : "关");
                 HTMSend(buf);
                 break;
@@ -1139,8 +1220,8 @@ void GameSetFunc(HANDTYPE *handpoint)
                 break;
 
             case 3: // t3: 头彩选择
-                SetDipSw.PlayFunEn ^= TOUCAI_FLG;
-                sprintf(buf, "t3.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & TOUCAI_FLG) ? "开" : "关");
+                SetDipSw.PlayFunEn ^= TOUBONUS_FLG;
+                sprintf(buf, "t3.txt=\"%s\"\xff\xff\xff", (SetDipSw.PlayFunEn & TOUBONUS_FLG) ? "开" : "关");
                 HTMSend(buf);
                 break;
             case 4: // t4: 头彩比例
@@ -1148,10 +1229,6 @@ void GameSetFunc(HANDTYPE *handpoint)
                 if (handpoint->password > 10)
                 {
                     SetDipSw.Toucairate = 10;
-                }
-                else if (handpoint->password < 0)
-                {
-                    SetDipSw.Toucairate = 0;
                 }
                 else
                 {
@@ -1300,17 +1377,123 @@ void GameSetFunc(HANDTYPE *handpoint)
                 break;
             case 0x15: // t18: 积分比例 (Jifenrate)
                 handpoint->password = strtodex(handpoint->data);
-                if (handpoint->password > 100){
+                if (handpoint->password > 100)
+                {
                     SetDipSw.Jifenrate = 100;
                 }
-                if (handpoint->password < 0){
-                    SetDipSw.Jifenrate = 0;
-                }
-                else{
+                else
+                {
                     SetDipSw.Jifenrate = handpoint->password;
                 }
-                sprintf(buf, "t18.txt=\"%ld\"\xff\xff\xff", SetDipSw.Jifenrate);
+                sprintf(buf, "t18.txt=\"%u\"\xff\xff\xff", SetDipSw.Jifenrate);
                 HTMSend(buf);
+                break;
+            default:
+                break;
+            }
+        }
+    }
+}
+
+void GameSetAuditRecord(HANDTYPE *handpoint)
+{
+    char buf[50];
+    uint64_t OutCnt_temp = 0;
+    uint64_t AllBet_temp = 0;
+    uint64_t AllWin_temp = 0;
+    uint32_t AllNumber_temp = 0;
+    if (handpoint->rx_ok_flg)
+    {
+        handpoint->rx_ok_flg = 0;
+        if (handpoint->page == 10)
+        {
+            switch (handpoint->ctr)
+            {
+            case 1:
+                handpoint->gamestation = 0;
+                handpoint->GameIndex = MAIN_MUNE;
+                sprintf(buf, "page 0\xff\xff\xff");
+                HTMSend(buf);
+                sprintf(buf, "t0.txt=\"%s\"\xff\xff\xff", GameName);
+                HTMSend(buf);
+                __24C04_FLAG |= S_LUCKJIANG;
+                __24C04_FLAG |= S_GAMERECORD;
+                break;
+            case 2:
+                memcpy(&RecordLuckJiang, &LuckJiang, sizeof(LuckJiang));
+                OutCnt_temp = 0;
+                AllBet_temp = 0;
+                AllWin_temp = 0;
+                AllNumber_temp = 0;
+                // 奖池开奖展示内容（左侧）
+                for (int i = 1; i < 9; i++)
+                {
+
+                    sprintf(buf, "t%d.txt=\"%u\"\xff\xff\xff", i + 5, LuckJiang.JiangJinCnt[i]); // 特殊奖次数
+                    HTMSend(buf);
+                    sprintf(buf, "t%d.txt=\"%u\"\xff\xff\xff", i + 16, LuckJiang.JiangJinWin[i]); // 特殊奖赢分
+                    HTMSend(buf);
+                    OutCnt_temp += LuckJiang.JiangJinCnt[i]; // 统计开特殊奖次数
+                }
+                sprintf(buf, "t5.txt=\"%llu\"\xff\xff\xff", OutCnt_temp); // 开特殊奖次数
+                HTMSend(buf);
+                sprintf(buf, "t14.txt=\"%u\"\xff\xff\xff", LuckJiang.JiangJinChi_In); // 进奖池金额
+                HTMSend(buf);
+                sprintf(buf, "t15.txt=\"%u\"\xff\xff\xff", LuckJiang.JiangJinChi_Out); // 出奖池金额
+                HTMSend(buf);
+                sprintf(buf, "t16.txt=\"%u\"\xff\xff\xff", LuckJiang.JiangJinChi); // 奖池金额
+                HTMSend(buf);
+
+                //--------------------------------测试---------------------------------------
+                for (int i = 0; i < 16; i++)
+                {
+                    GameRecord.PaiLuBet[i] += 2;
+                    GameRecord.PaiLuWin[i]++;
+                    GameRecord.PaiLuCnt[i]++;
+                }
+                //---------------------------------------------------------------------------
+
+                // 牌路记录（右侧）
+                for (int i = 0; i < 16; i++)
+                {
+                    sprintf(buf, "t%d.txt=\"%llu\"\xff\xff\xff", i + 26, GameRecord.PaiLuBet[i]);
+                    HTMSend(buf);
+                    sprintf(buf, "t%d.txt=\"%llu\"\xff\xff\xff", i + 43, GameRecord.PaiLuWin[i]);
+                    HTMSend(buf);
+                    sprintf(buf, "t%d.txt=\"%u\"\xff\xff\xff", i + 60, GameRecord.PaiLuCnt[i]);
+                    HTMSend(buf);
+                    if (GameRecord.PaiLuBet > 0)
+                    {
+                        sprintf(buf, "t%d.txt=\"%llu%%\"\xff\xff\xff", i + 79, GameRecord.PaiLuWin[i] * 100 / GameRecord.PaiLuBet[i]);
+                        HTMSend(buf);
+                    }
+                    else
+                    {
+                        sprintf(buf, "t%d.txt=\"%ld\"\xff\xff\xff", i + 79, 0);
+                        HTMSend(buf);
+                    }
+                    AllBet_temp += GameRecord.PaiLuBet[i];
+                    AllWin_temp += GameRecord.PaiLuWin[i];
+                    AllNumber_temp += GameRecord.PaiLuCnt[i];
+                }
+                // 总统计
+                sprintf(buf, "t99.txt=\"%llu\"\xff\xff\xff", AllBet_temp); // 总押分
+                HTMSend(buf);
+                sprintf(buf, "t100.txt=\"%llu\"\xff\xff\xff", AllWin_temp); // 总赢分
+                HTMSend(buf);
+                sprintf(buf, "t101.txt=\"%u\"\xff\xff\xff", AllNumber_temp); // 总局数
+                HTMSend(buf);
+                if (AllBet_temp > 0)
+                {
+                    sprintf(buf, "t102.txt=\"%lu%%\"\xff\xff\xff", (uint32_t)((AllWin_temp * 100) / AllBet_temp)); // 总盈利比
+                    HTMSend(buf);
+                }
+                else
+                {
+                    sprintf(buf, "t102.txt=\"0%%\"\xff\xff\xff"); // 如果总押分为零，盈利比为 0%
+                    HTMSend(buf);
+                }
+
                 break;
             default:
                 break;
@@ -1371,6 +1554,9 @@ void GameSetProc(HANDTYPE *handpoint)
         break;
     case CONFIG_CRT3: // 功能设置
         GameSetFunc(handpoint);
+        break;
+    case RECORD_LOOK: // 查看记录
+        GameSetAuditRecord(handpoint);
         break;
     default:
         GameSetInit(handpoint);

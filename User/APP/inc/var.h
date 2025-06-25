@@ -2,7 +2,6 @@
 #define __VAR_H__
 #include "includes.h"
 
-
 //------------------------------------------------------
 //
 //------------------------------------------------------
@@ -14,20 +13,24 @@
 //------------------------------------------------------
 // 游戏参数
 //------------------------------------------------------
-extern uint32_t __24C04_FLAG;  // ii2c save flg
-extern DipSwType DipSw;        // 游戏设置
-extern DipSwType SetDipSw;     // 游戏临时设置
-extern uint32_t Machine_line;  // 机台线号
-extern uint32_t Machine_id;    // 机台台号
-extern char FutoryTime[10];    // 出厂日期
-extern char ProgramVel[10];    // 程序版本
-extern int64_t Prevpayoff;     // 前期盈利
-extern int64_t CurrPayoff;     // 现在盈利
-extern int32_t AccoutPassWord; // 查账密码
-extern int32_t ConfigPassWord; // 参数密码
-extern int32_t SystemPassWord; // 系统密码
-extern int32_t FuncPassWord;   // 功能密码
-extern uint8_t Qiuwei[10];     // 机器球位
+extern uint32_t __24C04_FLAG;     // ii2c save flg
+extern DipSwType DipSw;           // 游戏设置
+extern DipSwType SetDipSw;        // 游戏临时设置
+extern uint32_t Machine_line;     // 机台线号
+extern uint32_t Machine_id;       // 机台台号
+extern char FutoryTime[10];       // 出厂日期
+extern char ProgramVel[10];       // 程序版本
+extern int64_t Prevpayoff;        // 前期盈利
+extern int64_t CurrPayoff;        // 现在盈利
+extern int32_t AccoutPassWord;    // 查账密码
+extern int32_t ConfigPassWord;    // 参数密码
+extern int32_t SystemPassWord;    // 系统密码
+extern int32_t FuncPassWord;      // 功能密码
+extern int32_t RecordPassWord;    // 记录密码
+extern uint8_t Qiuwei[10];        // 机器球位
+extern LuckJiangType LuckJiang;   // 幸运奖记录
+extern LuckJiangType RecordLuckJiang; // 幸运奖记录
+extern GameRecordType GameRecord; // 游戏记录
 //------------------------------------------------------
 // 游戏参数重设使用
 //------------------------------------------------------
@@ -59,15 +62,15 @@ extern uint16_t DispGameCount;  // 显示游戏局数
 extern uint16_t ChildTotalGame; // 玩家显示轮数
 extern uint16_t ChildGameCount; // 玩家显示局数
 extern uint32_t LineBonus;
-extern uint32_t MaxBonus;                           // 头顶大彩金
-extern uint32_t MidBonus;                           // 头顶中彩金
-extern uint32_t MinBonus;                           // 头顶小彩金
+extern uint32_t MaxBonus; // 头顶大彩金
+extern uint32_t MidBonus; // 头顶中彩金
+extern uint32_t MinBonus; // 头顶小彩金
 extern uint8_t GamePai;
-extern uint8_t MingPai;                              // 明牌状态标志
+extern uint8_t MingPai; // 明牌状态标志
 extern uint8_t Luck;
 extern uint8_t Luck_CS;
-extern uint8_t LuckBuf[TOTAL_JUSHU];                // 游戏幸运奖BUF
-extern uint8_t LuckFunBuf[10];                       // 游戏幸运奖类目
+extern uint8_t LuckBuf[TOTAL_JUSHU]; // 游戏幸运奖BUF
+extern uint8_t LuckFunBuf[10];       // 游戏幸运奖类目
 extern LuckJiangType LuckJiang;
 
 extern uint32_t DingFen[MAX_FENJI];
@@ -92,7 +95,7 @@ extern uint32_t Sramflg;
 //------------------------------------------------------
 // 游戏状态变量
 //------------------------------------------------------
-extern uint8_t ProcMem; // 游戏步骤
+extern uint8_t ProcMem;    // 游戏步骤
 extern uint8_t OldProcMem; // 游戏步骤
 extern uint32_t Gamestation;
 

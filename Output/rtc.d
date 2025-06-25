@@ -20,7 +20,7 @@
 ..\..\output\rtc.o: ..\..\Libraries\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h
 ..\..\output\rtc.o: ..\..\Libraries\CMSIS\Device\ST\STM32H7xx\Include\stm32h743xx.h
 ..\..\output\rtc.o: ..\..\Libraries\CMSIS\Include\core_cm7.h
-..\..\output\rtc.o: C:\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
+..\..\output\rtc.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
 ..\..\output\rtc.o: ..\..\Libraries\CMSIS\Include\cmsis_version.h
 ..\..\output\rtc.o: ..\..\Libraries\CMSIS\Include\cmsis_compiler.h
 ..\..\output\rtc.o: ..\..\Libraries\CMSIS\Include\cmsis_armcc.h
@@ -31,8 +31,8 @@
 ..\..\output\rtc.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h
 ..\..\output\rtc.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_def.h
 ..\..\output\rtc.o: ..\..\Libraries\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h
-..\..\output\rtc.o: C:\Keil5\ARM\ARMCC\Bin\..\include\stddef.h
-..\..\output\rtc.o: C:\Keil5\ARM\ARMCC\Bin\..\include\math.h
+..\..\output\rtc.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stddef.h
+..\..\output\rtc.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\math.h
 ..\..\output\rtc.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc_ex.h
 ..\..\output\rtc.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio.h
 ..\..\output\rtc.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio_ex.h
@@ -59,7 +59,7 @@
 ..\..\output\rtc.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart.h
 ..\..\output\rtc.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_uart_ex.h
 ..\..\output\rtc.o: ..\..\User\BSP\./led/bsp_led.h
-..\..\output\rtc.o: C:\Keil5\ARM\ARMCC\Bin\..\include\stdio.h
+..\..\output\rtc.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdio.h
 ..\..\output\rtc.o: ..\..\User\BSP\bsp.h
 ..\..\output\rtc.o: ..\..\User\APP\inc\app_cfg.h
 ..\..\output\rtc.o: ..\..\User\APP\inc\memory.h
@@ -69,7 +69,7 @@
 ..\..\output\rtc.o: ..\..\User\BSP\fmc.h
 ..\..\output\rtc.o: ..\..\User\APP\inc\main.h
 ..\..\output\rtc.o: ..\..\User\APP\inc\fpga.h
-..\..\output\rtc.o: C:\Keil5\ARM\ARMCC\Bin\..\include\string.h
+..\..\output\rtc.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\string.h
 ..\..\output\rtc.o: ..\..\User\BSP\gpio.h
 ..\..\output\rtc.o: ..\..\User\BSP\spi.h
 ..\..\output\rtc.o: ..\..\User\BSP\usart.h

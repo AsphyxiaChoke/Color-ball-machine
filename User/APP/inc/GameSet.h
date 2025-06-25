@@ -11,6 +11,7 @@ enum
     CONFIG_CRT1,   // 参数调整
     CONFIG_CRT2,   // 系统设置
     CONFIG_CRT3,   // 功能设置
+    RECORD_LOOK,   // 记录查询
     SET_QIU,       // 设置球位
     INPUT_PASS,    // 输入密码
     SETBONUS,      // 设置头彩金

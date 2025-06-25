@@ -24,10 +24,13 @@ uint32_t GetMaxBonus(DipSwType *dipsw);
 
 uint16_t GetPlayFun(DipSwType *dipsw);
 
-uint8_t GetLuckIndex(DipSwType *dipsw);
+uint16_t GetLuckTimes(DipSwType *dipsw);
+uint16_t GetLuckIndex(DipSwType *dipsw);
 
 uint32_t GetMinJifen(DipSwType *dipsw);
 uint32_t GetJifenRate(DipSwType *dipsw);
+
+uint32_t GetTouCaiRate(DipSwType *dipsw);
 
 uint32_t GetLineMinLitBonus(DipSwType *dipsw);
 uint32_t GetLineMaxLitBonus(DipSwType *dipsw);

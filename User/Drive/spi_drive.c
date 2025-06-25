@@ -1,42 +1,46 @@
 #include "spi_drive.h"
 
+static uint8_t g_spi_tx_buffer[350];
+static uint8_t g_spi_rx_buffer[350];
+static uint8_t g_spi_write_buffer[350];
+
 HAL_StatusTypeDef Write_spi(uint16_t addr, uint8_t *pdata, uint32_t size)
 {
     HAL_StatusTypeDef err;
-    uint8_t buf[128], len;
-    buf[0] = 0x06;
-    if ((err = HAL_SPI_Transmit(&hspi1, &buf[0], sizeof(buf[0]), 5000)) != HAL_OK)
+    uint32_t len;
+    g_spi_write_buffer[0] = 0x06;
+    if ((err = HAL_SPI_Transmit(&hspi1, &g_spi_write_buffer[0], sizeof(g_spi_write_buffer[0]), 5000)) != HAL_OK)
     {
         return err;
     }
-    buf[0] = 0x02;
-    buf[1] = (uint8_t)(addr >> 8);
-    buf[2] = (uint8_t)addr;
+    g_spi_write_buffer[0] = 0x02;
+    g_spi_write_buffer[1] = (uint8_t)(addr >> 8);
+    g_spi_write_buffer[2] = (uint8_t)addr;
     for (len = 0; len < size; len++, pdata++)
     {
-        buf[3 + len] = *pdata;
+        g_spi_write_buffer[3 + len] = *pdata;
     }
-    err = HAL_SPI_Transmit(&hspi1, buf, len + 3, 5000);
+    err = HAL_SPI_Transmit(&hspi1, g_spi_write_buffer, len + 3, 5000);
     return err;
 }
 
 HAL_StatusTypeDef Read_spi(uint16_t addr, uint8_t *pdata, uint32_t size)
 {
     HAL_StatusTypeDef err;
-    uint8_t txbuf[128], rxbuf[128], i;
-    txbuf[0] = 0x03;
-    txbuf[1] = (uint8_t)(addr >> 8);
-    txbuf[2] = (uint8_t)addr;
-    for (i = 0; i < size; i++)
+    uint32_t i;
+    g_spi_tx_buffer[0] = 0x03;
+    g_spi_tx_buffer[1] = (uint8_t)(addr >> 8);
+    g_spi_tx_buffer[2] = (uint8_t)addr;
+     for (i = 0; i < size; i++)
     {
-        txbuf[3 + i] = 0xff;
+        g_spi_tx_buffer[3 + i] = 0xff;
     }
-    if ((err = HAL_SPI_TransmitReceive(&hspi1, txbuf, rxbuf, 3 + size, 5000)) != HAL_OK)
+    if ((err = HAL_SPI_TransmitReceive(&hspi1, g_spi_tx_buffer, g_spi_rx_buffer, 3 + size, 5000)) != HAL_OK)
     {
         return err;
     }
     for(i=0;i<size;i++,pdata++){
-        *pdata = rxbuf[3+i];
+        *pdata = g_spi_rx_buffer[3+i];
     }
     return err;
 }

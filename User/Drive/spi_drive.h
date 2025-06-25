@@ -28,6 +28,9 @@
 #define eeAllBet8               (__24C04_Addr+0x440)
 #define eeAllWin8               (__24C04_Addr+0x4c0)  
 
+#define eeGameRecord           (__24C04_Addr+0x550)    // GameRecordType 结构体地址
+#define eeLuckJiang            (__24C04_Addr+0x700)    // LuckJiangType 结构体地址
+
 #define IICINIT                 0x12345678
 
 #define W_INT4 4 // 字节宽度

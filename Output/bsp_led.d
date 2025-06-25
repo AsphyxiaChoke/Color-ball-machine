@@ -3,7 +3,7 @@
 ..\..\output\bsp_led.o: ..\..\Libraries\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h
 ..\..\output\bsp_led.o: ..\..\Libraries\CMSIS\Device\ST\STM32H7xx\Include\stm32h743xx.h
 ..\..\output\bsp_led.o: ..\..\Libraries\CMSIS\Include\core_cm7.h
-..\..\output\bsp_led.o: C:\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
+..\..\output\bsp_led.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
 ..\..\output\bsp_led.o: ..\..\Libraries\CMSIS\Include\cmsis_version.h
 ..\..\output\bsp_led.o: ..\..\Libraries\CMSIS\Include\cmsis_compiler.h
 ..\..\output\bsp_led.o: ..\..\Libraries\CMSIS\Include\cmsis_armcc.h
@@ -14,8 +14,8 @@
 ..\..\output\bsp_led.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc.h
 ..\..\output\bsp_led.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_def.h
 ..\..\output\bsp_led.o: ..\..\Libraries\CMSIS\Device\ST\STM32H7xx\Include\stm32h7xx.h
-..\..\output\bsp_led.o: C:\Keil5\ARM\ARMCC\Bin\..\include\stddef.h
-..\..\output\bsp_led.o: C:\Keil5\ARM\ARMCC\Bin\..\include\math.h
+..\..\output\bsp_led.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stddef.h
+..\..\output\bsp_led.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\math.h
 ..\..\output\bsp_led.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_rcc_ex.h
 ..\..\output\bsp_led.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio.h
 ..\..\output\bsp_led.o: ..\..\Libraries\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_gpio_ex.h

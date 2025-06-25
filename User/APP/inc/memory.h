@@ -12,6 +12,9 @@
 #define BET_NUMBER 5
 #define TOTAL_LUNSHU 20
 #define TOTAL_JUSHU 100
+
+#define MAX_LUCK 10
+#define MAX_PAILU 16
 //------------------------------------------------------------
 // 分机标志
 //------------------------------------------------------------
@@ -54,6 +57,9 @@
 #define S_MACHINELINE (1UL << 6) // 线号
 #define S_MACHINEID (1UL << 7)   // 台号
 #define S_QIUWEI (1UL << 8)      // 球位
+#define S_GAMERECORD (1UL << 9) // 游戏记录
+#define S_LUCKJIANG (1UL << 10) // 幸运奖
+
 //---------------------------------------------------
 // 机器运行错误
 //---------------------------------------------------
@@ -175,13 +181,21 @@ enum GAME_LUCK
 };
 typedef struct LuckJiangType
 {
-    uint32_t JiangJinChi;
-    uint32_t JiangJinChi_In;
-    uint32_t JiangJinChi_Out;
-    uint32_t JiangJinWin[10];
-    uint32_t JiangJinCnt[10];
+    uint32_t JiangJinChi; // 奖池剩余
+    uint32_t JiangJinChi_In; // 奖池赢分
+    uint32_t JiangJinChi_Out; // 奖池退分
+    uint32_t JiangJinWin[MAX_LUCK]; // 幸运奖赢的分数
+    uint32_t JiangJinCnt[MAX_LUCK]; // 幸运奖赢的次数
     uint32_t Luck_AllWin2;
 }LuckJiangType;
+
+typedef struct GameRecordType
+{
+    uint64_t PaiLuWin[MAX_PAILU]; // 牌路赢分
+    uint64_t PaiLuBet[MAX_PAILU]; // 牌路押分
+    uint32_t PaiLuCnt[MAX_PAILU]; // 牌路赢分次数
+}GameRecordType;
+
 typedef struct ChildType
 {
     uint32_t Credit;             // 4

@@ -118,7 +118,7 @@ void ClearZero(uint8_t n)
     if (n)
     {
         dipswpoint = &DipSw;
-        //dipswpoint->BaseBeiIndex = 0;//默认选择3.8-3.8-4-4-20
+        // dipswpoint->BaseBeiIndex = 0;//默认选择3.8-3.8-4-4-20
         dipswpoint->NoteIn = 100;
         dipswpoint->NoteOut = 100;
         dipswpoint->CoinIn = 1;
@@ -160,6 +160,7 @@ void ClearZero(uint8_t n)
         ConfigPassWord = 0;
         SystemPassWord = 16881688;
         FuncPassWord = 0;
+        RecordPassWord = 0;
         WriteEEPROM(eeAccoutPassWord, (uint8_t *)&AccoutPassWord, sizeof(AccoutPassWord));
         WriteEEPROM(eeConfigPassWord, (uint8_t *)&ConfigPassWord, sizeof(ConfigPassWord));
         WriteEEPROM(eeSystemPassWord, (uint8_t *)&SystemPassWord, sizeof(SystemPassWord));
@@ -180,6 +181,11 @@ void ClearZero(uint8_t n)
         Qiuwei[8] = 0;
         Qiuwei[9] = 0;
         WriteEEPROM(eeQiuwei, Qiuwei, sizeof(Qiuwei));
+
+        // memset(&GameRecord, 0, sizeof(GameRecord));
+        // WriteEEPROM(eeGameRecord, (uint8_t *)&GameRecord, sizeof(GameRecord)); // 保存默认值
+        // memset(&LuckJiang, 0, sizeof(LuckJiang));                              // 清零为默认值
+        // WriteEEPROM(eeLuckJiang, (uint8_t *)&LuckJiang, sizeof(LuckJiang));    // 保存默认值
 
         for (i = 0; i < MAX_FENJI; i++)
         {
@@ -224,6 +230,8 @@ void ClearZero(uint8_t n)
             ReadEEPROM(eeAllBet8 + 8 * i, (uint8_t *)&(pChild->AllBet8), W_INT8);
             ReadEEPROM(eeAllWin8 + 8 * i, (uint8_t *)&(pChild->AllWin8), W_INT8);
         }
+        ReadEEPROM(eeGameRecord, (uint8_t *)&GameRecord, sizeof(GameRecord));
+        ReadEEPROM(eeLuckJiang, (uint8_t *)&LuckJiang, sizeof(LuckJiang));
     }
     Gamestation = 0;
 }
@@ -426,7 +434,7 @@ static void AppKey(void *p_arg)
             Child_key_proc(tmp);
         }
         led_cnt++;
-        //if ((led_cnt & 0x1f) == 0x1f)
+        // if ((led_cnt & 0x1f) == 0x1f)
         if (led_cnt >= 50)
         {
             led_cnt = 0;
@@ -451,7 +459,7 @@ static void AppKey(void *p_arg)
             }
         }
         RevMaster(&masterbuf);
-        //OSTimeDly(2, OS_OPT_TIME_DLY, &err); // 延时1s
+        // OSTimeDly(2, OS_OPT_TIME_DLY, &err); // 延时1s
         OSTimeDly(1, OS_OPT_TIME_DLY, &err); // 延时1s
     }
 }
@@ -464,14 +472,14 @@ static void AppMain(void *p_arg)
     (void)p_arg; // 没有用到形参，防止编译器报错
     Scene();
 
-    // 复位转球机
-    #ifdef  __USE_JIXIN__
+// 复位转球机
+#ifdef __USE_JIXIN__
     Init_JiXinUartSet();
-    MachineReSet(); 
-    #else
-    #warning "没有使用顶球机芯"
-    #endif
-    
+    MachineReSet();
+#else
+#warning "没有使用顶球机芯"
+#endif
+
     // 游戏初始化
     while (DEF_TRUE)
     {
@@ -501,11 +509,11 @@ static void AppMain(void *p_arg)
                 GameEnd2();
                 break;
             case 7:
-                #ifdef  __USE_JIXIN__
+#ifdef __USE_JIXIN__
                 GameSetBall();
-                #else
+#else
                 ProcMem = 1;
-                #endif
+#endif
                 break;
             default:
                 ProcMem = 0;
